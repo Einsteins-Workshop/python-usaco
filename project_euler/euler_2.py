@@ -8,4 +8,18 @@
 # find the sum of the even-valued terms.
 
 # Replace the below with your program.
-print(2+8+34)
+last = 2
+lastlast = 1
+evensum = 2
+def fib(l1= last, l2 = lastlast):
+    if (l1+l2%2 == 0):
+        newlastlast = l1
+        newlast = l1 + l2
+        return(newlast, newlastlast, True)
+    else:
+        newlastlast = l1
+        newlast = l1 + l2
+        return(newlast, newlastlast, False)
+while (last < 4000000):
+        fib(last, lastlast)
+        print(last, lastlast, sum)
