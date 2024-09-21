@@ -11,17 +11,12 @@
 fib=[]
 x=1
 y=1
-z=1
 while x<4000000:
-    z=y+x
     fib.append(x)
     x=y
-    y=z
+    y=fib[-1]+y
 xs = []
 for x in fib:
-    if (x % 2) == 0:
+    if (x%2)==0:
         xs.append(x)
-#print(sum(xs))
-
-input=input("Wuzz ur namey????? ")
-print(f"Hewo {input} u be a PERSON")
+print(sum(xs))

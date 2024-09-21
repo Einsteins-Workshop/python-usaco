@@ -5,13 +5,10 @@
 # What is the largest prime factor of the number 600851475143
 
 # Replace the below with your program.
-print(29)
 datnumbah=600851475143
-def ibzatnumaprimethy(zat_number, primethy):
-    if zat_number % primethy == 0:
-        print("yass")
+def ibzatnumaprimethy(zat_numbah, primethy):
+    if zat_numbah % primethy == 0:
         return(True)
     else:
-        print("nopp")
         return(False)
 ibzatnumaprimethy(datnumbah, 3)
