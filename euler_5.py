@@ -7,14 +7,13 @@
 # to 20.
 
 # Replace the below with your program.
-print(2520)
-selfDestruct=False
-for x in range(20,100000000):
+for x in range(20,1000000000):
     for y in range(1, 21):
-        selfDestruct=False
         if x%y!=0:
-            selfDestruct=True
+            failed=True
             break
-    if selfDestruct:
+    if failed==True:
+        x=x+1
+    else:
         break
 print(x)
