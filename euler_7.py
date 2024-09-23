@@ -21,4 +21,4 @@ for a in range(len(possiblePrimes)):
                 possiblePrimes.remove(possiblePrimes[o])
     else:
         break
-print(primer[10001])
+print(primer[10000])
