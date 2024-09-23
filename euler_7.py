@@ -6,8 +6,6 @@
 # What is the 10001st prime number?
 
 # Replace the below with your program.
-print(13)
-
 primer=[]
 possiblePrimes=[]
 for i in range(200000):
