@@ -8,4 +8,15 @@
 # find the sum of the even-valued terms.
 
 # Replace the below with your program.
-print(2+8+34)
+fib=[]
+x=1
+y=1
+while x<4000000:
+    fib.append(x)
+    x=y
+    y=fib[-1]+y
+xs = []
+for x in fib:
+    if (x%2)==0:
+        xs.append(x)
+print(sum(xs))

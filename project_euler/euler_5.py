@@ -7,4 +7,13 @@
 # to 20.
 
 # Replace the below with your program.
-print(2520)
+for x in range(20,1000000000):
+    for y in range(1, 21):
+        if x%y!=0:
+            failed=True
+            break
+    if failed==True:
+        x=x+1
+    else:
+        break
+print(x)
