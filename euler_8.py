@@ -1,7 +1,7 @@
 # See https://projecteuler.net/problem=8
 
 # The four adjacent digits in the following 1000-digit number that have the greatest
-# product are 9 x 9 x 8 x 0 = 5832.
+# product are 9 x 9 x 8 x 9 = 5832.
 
 large_number = '''
 73167176531330624919225119674426574742355349194934
@@ -33,3 +33,7 @@ large_number = large_number.replace('\n', '')
 # Replace the below with your program.
 print(large_number)
 print(9*9*8*9)
+Beeeg_number=[]
+for x in range(len(str(large_number))-13):
+    Beeeg_number.append(int(large_number[0]))
+    large_number=large_number[1:]
