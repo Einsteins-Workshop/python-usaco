@@ -1,7 +1,7 @@
 # See https://projecteuler.net/problem=8
 
 # The four adjacent digits in the following 1000-digit number that have the greatest
-# product are 9 x 9 x 8 x 0 = 5832.
+# product are 9 x 9 x 8 x 9 = 5832.
 
 large_number = '''
 73167176531330624919225119674426574742355349194934
@@ -31,5 +31,21 @@ large_number = large_number.replace('\n', '')
 # Find the thirteen adjacent digits in the 1000-digit number that have the greatest product.
 
 # Replace the below with your program.
-print(large_number)
-print(9*9*8*9)
+large_number=str(large_number)
+biggestproduct=0
+Beeeg_numbers=[]
+for x in range(len(large_number)):
+    Beeeg_numbers.append(int(large_number[0]))
+    large_number=large_number[1:]
+for a in range(len(Beeeg_numbers)):
+    the13Numbers=[]
+    productofthe13numbers=1
+    for i in range(13):
+        if len(Beeeg_numbers)<=13:
+            break
+        the13Numbers.append(Beeeg_numbers[i])
+        productofthe13numbers=productofthe13numbers*Beeeg_numbers[i]
+    Beeeg_numbers.remove(Beeeg_numbers[0])
+    if productofthe13numbers>biggestproduct:
+        biggestproduct=productofthe13numbers
+print(biggestproduct)
