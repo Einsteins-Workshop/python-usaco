@@ -10,4 +10,11 @@
 # Find the product abc.
 
 # Replace the below with your program.
-print(3*4*5)
+for n in range(1000):
+    for m in range(1000):
+        a=n*n-m*m
+        b=2*m*n
+        c=n*n+m*m
+        if a+b+c==1000 and a*b*c>1:
+            print(a*b*c)
+            break
