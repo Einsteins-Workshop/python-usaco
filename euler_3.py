@@ -7,8 +7,6 @@
 # Replace the below with your program.
 import math
 BeeegNumber=600851475143
-BeeegNumber=int(BeeegNumber)
-    
 primer=[]
 possiblePrimes=[]
 for i in range(BeeegNumber):
