@@ -13,4 +13,10 @@
 # and the square of the sum.
 
 # Replace the below with your program.
-print(3025-385)
+sqofsu=0
+suofsq=0
+for x in range(1,101):
+    sqofsu=sqofsu+x
+    suofsq=suofsq+x*x
+sqofsu=sqofsu*sqofsu
+print(sqofsu-suofsq)
