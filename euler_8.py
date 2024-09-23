@@ -31,9 +31,21 @@ large_number = large_number.replace('\n', '')
 # Find the thirteen adjacent digits in the 1000-digit number that have the greatest product.
 
 # Replace the below with your program.
-print(large_number)
-print(9*9*8*9)
-Beeeg_number=[]
-for x in range(len(str(large_number))-13):
-    Beeeg_number.append(int(large_number[0]))
+large_number=str(large_number)
+biggestproduct=0
+Beeeg_numbers=[]
+for x in range(len(large_number)):
+    Beeeg_numbers.append(int(large_number[0]))
     large_number=large_number[1:]
+for a in range(len(Beeeg_numbers)):
+    the13Numbers=[]
+    productofthe13numbers=1
+    for i in range(13):
+        if len(Beeeg_numbers)<=13:
+            break
+        the13Numbers.append(Beeeg_numbers[i])
+        productofthe13numbers=productofthe13numbers*Beeeg_numbers[i]
+    Beeeg_numbers.remove(Beeeg_numbers[0])
+    if productofthe13numbers>biggestproduct:
+        biggestproduct=productofthe13numbers
+print(biggestproduct)
