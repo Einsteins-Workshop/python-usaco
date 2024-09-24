@@ -7,7 +7,7 @@
 # to 20.
 
 # Replace the below with your program.
-for x in range(20,1000000000):
+while True:
     for y in range(1, 21):
         if x%y!=0:
             failed=True
