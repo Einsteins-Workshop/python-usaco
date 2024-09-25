@@ -20,4 +20,4 @@ for a in range(len(possiblePrimes)):
                 possiblePrimes.remove(possiblePrimes[o])
     else:
         break
-print(sum(primer))
+    print(sum(primer))
