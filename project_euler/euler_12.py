@@ -17,11 +17,14 @@
 
 # Replace the below with your program.
 x=0
-triangleNumbers=[]
 tri=0
 while True:
     x=x+1
     tri=x+tri
-    triangleNumbers.append(tri)
-    for i in range(len(str(tri))):
-        pass
+    triFactors=[]
+    for i in range(1,len(str(tri))+1):
+        if tri%i==0:
+            triFactors.append(i)
+    if len(triFactors)>=500:
+        print(tri)
+        break
