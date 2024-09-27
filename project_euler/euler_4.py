@@ -8,7 +8,7 @@
 # Replace the below with your program.
 def isXAPalendrome(x):
     x=str(x)
-    y=x [::-1]
+    y=x[::-1]
     y=int(y)
     x=int(x)
     if x==y:
