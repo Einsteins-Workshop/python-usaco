@@ -4,4 +4,4 @@ bronze_2011_dec_1
 
 Level 2 difficulty (requiring intermediate data structure or processing)
 bronze_2011_nov_2
-bronze_2011_dec_1
+bronze_2019_dec_1

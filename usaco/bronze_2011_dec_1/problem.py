@@ -43,8 +43,12 @@
 # Fill out the following function, which should return the correct answer for a file with
 # the correct input file format.
 def determine_solution(file_name):
-    return 7
-
+    with open(file_name, 'r') as file:
+        howManyPiles = int(file.readline().rstrip())
+        #theHays = []
+        #for i in range(howManyPiles):
+        #    theHays.append(int(file.readline(i+1).rstrip()))
+    print(f"The amount of bunnies sitting on cows is {howManyPiles}")
 
 # Proper format to be evaluated by USACO
 # with open("ctiming.out", "w") as f:
@@ -60,4 +64,5 @@ for case in range(1, 11):
         your_answer = str(determine_solution(input_file_name))
         if correct_answer != your_answer:
             print(f"Your answer of {your_answer} is not correct, try again.")
+            print(f"The correct answer was {correct_answer}.")
             exit()
