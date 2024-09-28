@@ -45,8 +45,17 @@
 
 # Fill out the following function, which should return the correct answer for a file with
 # the correct input file format.
-def determine_solution(file_name):
-    return 1563
+def determine_solution(limaNomen):
+    disNumber = open(limaNomen, "r").readline()
+    disNumber=disNumber.strip().split(" ")
+    for i in range(len(disNumber)):
+        disNumber.insert(i+1, int(disNumber[i]))
+        disNumber.remove(disNumber[i])
+    minutes=disNumber[0]*1440+disNumber[1]*60+disNumber[2]
+    timeDiff=minutes-(11+11*60+11*60*24)
+    if timeDiff<0:
+        timeDiff=-1
+    return timeDiff
 
 
 # Proper format to be evaluated by USACO
@@ -64,3 +73,5 @@ for case in range(1, 11):
         if correct_answer != your_answer:
             print(f"Your answer of {your_answer} is not correct, try again.")
             exit()
+        else:
+            print("which was your answer! Good job.")
