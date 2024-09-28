@@ -43,7 +43,30 @@
 # Fill out the following function, which should return the correct answer for a file with
 # the correct input file format.
 def determine_solution(file_name):
-    return 7
+    gimmiefiles = open(file_name, "r")
+    next_line = gimmiefiles.readline()
+    next_line = gimmiefiles.readline()
+    sumofstacks = 0
+    count = 0
+    hayoutofplace = 0
+    while next_line:
+        sumofstacks = int(sumofstacks) + int(next_line)
+        count = count + 1
+        #print (count, sumofstacks, next_line)
+        next_line=gimmiefiles.readline()
+    average = sumofstacks / count
+    gimmiefilesx2 = open(file_name, "r")
+    next_line = gimmiefilesx2.readline()
+    next_line = gimmiefilesx2.readline()
+    #print(average, "p2")
+    while next_line:
+        hayoutofplace = hayoutofplace + abs(int(next_line) - average)
+        next_line=gimmiefilesx2.readline()
+        #print(hayoutofplace)
+    #print(hayoutofplace/2)
+    return int(hayoutofplace/2)
+
+    next_line = gimmiefiles.readline()
 
 
 # Proper format to be evaluated by USACO

@@ -46,7 +46,14 @@
 # Fill out the following function, which should return the correct answer for a file with
 # the correct input file format.
 def determine_solution(file_name):
-    return 1563
+    datef = open(file_name, "r")
+    date = datef.readline()
+    date = date.split()
+    print (date[0], "", date[1], "", date[2])
+    returning = ((int(date[0]) - 11) * 60 * 24 + (int(date[1])-11) * 60 + int(date[2]) - 11)
+    if (returning < 0):
+        (returning) = -1
+    return returning
 
 
 # Proper format to be evaluated by USACO
