@@ -5,4 +5,10 @@
 # and the sum of the digits in the number 10! is 3+6+2+8+8+0+0=27
 #
 # Find the sum of the digits in the number 100!
-print(3+6+2+8+8+0+0)
+sum = 0
+checking = 100
+
+while (checking > 0):
+    sum = checking * checking + sum
+    checking = checking - 1
+print (str(sum tv))
