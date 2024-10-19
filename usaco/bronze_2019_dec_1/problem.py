@@ -36,7 +36,14 @@
 # Fill out the following function, which should return the correct answer for a file with
 # the correct input file format.
 def determine_solution(file_name):
-    return 4
+
+    i=0
+    gimmiefiles = open(file_name, "r")
+    next_line = gimmiefiles.readline().split(" ")
+    slay={'ctc':next_line[0]}
+    while (i < int(slay["ctc"])):
+        print( slay["ctc"] )
+        i=i+1
 
 
 # Proper format to be evaluated by USACO
