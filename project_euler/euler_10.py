@@ -6,6 +6,7 @@
 
 # Replace the below with your program.
 testing = 0
+sum = 5
 primefound = [2, 3]
 primetesting = 4
 while(primetesting<2000001):
@@ -17,7 +18,8 @@ while(primetesting<2000001):
         primetesting=primetesting+1
     else:
         primefound.append(primetesting)
+        sum=sum+primetesting
         primetesting = primetesting + 1
     testing=0
-
 print (primefound)
+print (sum)
