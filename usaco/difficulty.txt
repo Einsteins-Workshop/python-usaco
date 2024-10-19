@@ -1,6 +1,7 @@
 Level 1 difficulty (direct computation)
 bronze_2011_nov_1
 bronze_2011_dec_1
+bronze_2012_mar_1
 
 Level 2 difficulty (requiring intermediate data structure or processing)
 bronze_2019_dec_1
