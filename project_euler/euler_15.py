@@ -6,10 +6,8 @@
 # How many such routes are there through a 20x20 grid?
 
 # Replace the below with your program.
-def findRoutes(remainingLefts, remainingRights):
-    if remainingLefts == 0:
+def findRoutes(lefts, rights):
+    if lefts==0 or rights==0:
         return 1
-    if remainingRights == 0:
-        return 1
-    return findRoutes(remainingLefts-1, remainingRights)+findRoutes(remainingLefts, remainingRights-1)
+    return findRoutes(lefts-1, rights)+findRoutes(lefts, rights-1)
 print(findRoutes(20, 20))
