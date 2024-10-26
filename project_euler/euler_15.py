@@ -12,5 +12,4 @@ def findRoutes(remainingLefts, remainingRights):
     if remainingRights == 0:
         return 1
     return findRoutes(remainingLefts-1, remainingRights)+findRoutes(remainingLefts, remainingRights-1)
-
 print(findRoutes(20, 20))
