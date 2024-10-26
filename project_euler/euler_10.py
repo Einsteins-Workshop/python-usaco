@@ -8,12 +8,10 @@ import math
 # Replace the below with your program.
 primer=[2]
 for i in range(2000000):
-    gogo=True
     if i>2:
         someSortOfVarible=math.sqrt(i)
         for x in primer:
             if i%x==0:
-                gogo=False
                 break
             elif x>someSortOfVarible:
                 primer.append(i)
