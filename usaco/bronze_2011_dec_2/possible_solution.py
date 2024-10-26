@@ -91,9 +91,29 @@
 
 # Fill out the following function, which should return the correct answer for a file with
 # the correct input file format.
+from functools import cmp_to_key
 def determine_solution(file_name):
-    return "1\n2\n3\n4\n5\n"
-
+    photo_orderings = [{} for _ in range(5)]
+    with open(file_name, 'r') as file:
+        cow_count = int(file.readline().strip())
+        for photo in range(5):
+            for position in range(cow_count):
+                cow = int(file.readline().strip())
+                photo_orderings[photo][cow] = position
+    def compare_cows(cow_1, cow_2):
+        cow_1_count = 0
+        cow_2_count = 0
+        for photo in range(5):
+            if photo_orderings[photo][cow_1] < photo_orderings[photo][cow_2]:
+                cow_1_count += 1
+                if cow_1_count > 2:
+                    return -1
+            else:
+                cow_2_count += 1
+                if cow_2_count > 2:
+                    return 1
+    sorted_cows = sorted(range(1, cow_count + 1), key=cmp_to_key(compare_cows))
+    return "\n".join([str(x) for x in sorted_cows]) + "\n"
 
 # Proper format to be evaluated by USACO
 # with open("photo.out", "w") as f:
