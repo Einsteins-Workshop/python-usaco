@@ -10,4 +10,6 @@ def findRoutes(lefts, rights):
     if lefts==0 or rights==0:
         return 1
     return findRoutes(lefts-1, rights)+findRoutes(lefts, rights-1)
-print(findRoutes(20, 20))
+inputa=input("A: ")
+inputb=input("B: ")
+print(findRoutes(int(inputa), int(inputb)))
