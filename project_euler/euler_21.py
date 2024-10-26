@@ -10,4 +10,3 @@
 # Evaluate the sum of all the amicable numbers under 10000.
 
 # Replace the below with your program.
-print("Why are you so demanding?")

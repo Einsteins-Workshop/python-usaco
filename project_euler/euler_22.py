@@ -13,5 +13,3 @@
 # What is the total of all the name scores in the file?
 
 # Replace the below with your program.
-
-print("Why are you so demanding?")

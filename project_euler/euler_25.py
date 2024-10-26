@@ -10,5 +10,3 @@
 # What is the index of the first term in the Fibonacci squence to contain 1000 digits?
 
 # Replace the below with your program.
-
-print("Why are you so demanding?")

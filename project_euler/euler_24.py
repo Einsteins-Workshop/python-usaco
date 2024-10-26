@@ -13,18 +13,13 @@
 def permute(nums):
     if len(nums) == 0:
         return [[]]
-
     result = []
     for i in range(len(nums)):
         current = nums[i]
         remaining =  nums[:i]+ nums[i + 1:]
         for p in permute(remaining):
             result.append([current] + p)
-
     return result
-
-
-# Example usage:
 numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 permutations = permute(numbers)
 print(permutations[999999])
