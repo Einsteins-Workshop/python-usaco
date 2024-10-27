@@ -11,6 +11,6 @@ def findRoutes(lefts, rights, mem={}):
         return mem[(lefts, rights)]
     if lefts==0 or rights==0:
         return 1
-    mem[(lefts, rights)] = findRoutes(lefts-1, rights)+findRoutes(lefts, rights-1)
+    mem[(lefts, rights)]=findRoutes(lefts-1, rights)+findRoutes(lefts, rights-1)
     return mem[(lefts, rights)]
 print(findRoutes(20, 20))
