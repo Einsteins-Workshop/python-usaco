@@ -36,8 +36,15 @@
 # Fill out the following function, which should return the correct answer for a file with
 # the correct input file format.
 def determine_solution(file_name):
-    return 4
-
+    with open(file_name, 'r') as file:
+        first_line = file.readline().rstrip().split(' ')
+        numberOfContests=first_line[0]
+        contests=[]
+        for contest in range(int(numberOfContests)):
+            contests.append(file.readline().rstrip().split(' '))
+            cows=first_line[1] m,l''
+            for cow in range(int(cows)):
+                print("I'm gud at this(NOT)")
 
 # Proper format to be evaluated by USACO
 # with open("gymnastics.out", "w") as f:
