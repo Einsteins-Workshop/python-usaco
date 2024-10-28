@@ -32,7 +32,8 @@
 # * Line 1: The binary representation of N times 17.
 #
 # SAMPLE OUTPUT (file times17.out):
-#
+# 1
+#10000
 # 110000100111
 #
 # OUTPUT DETAILS:
@@ -43,7 +44,21 @@
 # Fill out the following function, which should return the correct answer for a file with
 # the correct input file format.
 def determine_solution(file_name):
-    return "110000100111"
+    ff = open(file_name, "r")
+    f = int(ff.readline().rstrip())
+    c = int(f)*10000+int(f)
+    stringc = str(c)
+    array_c = list(stringc)
+    print(array_c)
+    print(str(c))
+    #while ("2" in str(c)):
+        #print(str(c))
+        #for gay in range(len(str(c))):
+            #if (gay==2):
+                #tr(c)[gay] = 0
+                #str(c)[gay-1] = c[gay-1] + 1
+
+    #return c
 
 
 # Proper format to be evaluated by USACO

@@ -60,7 +60,7 @@ def determine_solution(file_name):
 # with open("ctiming.out", "w") as f:
 #    f.write(str(determine_solution("ctiming.in")))
 #    exit()
-
+#
 # Checking against all local files
 for case in range(1, 11):
     input_file_name = f"data_files/I.{case}"
