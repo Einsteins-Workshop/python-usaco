@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # https://projecteuler.net/problem=13
 
 # Work out the first ten digits of the sum of the following one-hundred 50 digit numbers.
@@ -112,8 +111,8 @@ the5000DigitNumber="371072875339021027987979982208375902465101357402504637693767
 theBeeegestNumberIveEverSeen=[]
 x=0
 for i in range(100):
-    beegTmp=the5000DigitNumber[x:x+50]
-    theBeeegestNumberIveEverSeen.append(int(beegTmp))
+    beeegTmp=the5000DigitNumber[x:x+50]
+    theBeeegestNumberIveEverSeen.append(int(beeegTmp))
     x=x+50
 hugeMongoose=str(sum(theBeeegestNumberIveEverSeen))
 ans=hugeMongoose[:10]
