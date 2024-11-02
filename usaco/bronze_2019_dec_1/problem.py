@@ -42,7 +42,7 @@ def determine_solution(file_name):
         contests=[]
         for contest in range(int(numberOfContests)):
             contests.append(file.readline().rstrip().split(' '))
-            cows=first_line[1] m,l''
+            cows=first_line[1]
             for cow in range(int(cows)):
                 print("I'm gud at this(NOT)")
 
