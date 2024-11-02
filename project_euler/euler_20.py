@@ -8,11 +8,11 @@
 
 
 # Replace the below with your program.
-fact=1
-facts=[]
+factor=1
+factorials=[]
 for x in range(1, 100+1):
-    fac=fac*x
-fac=str(fac)
-for i in range(len(fac)):
-    facts.append(int(fac[i]))
-print(sum(facts))
+    factor=factor*x
+factor=str(factor)
+for i in range(len(factor)):
+    factorials.append(int(factor[i]))
+print(sum(factorials))
