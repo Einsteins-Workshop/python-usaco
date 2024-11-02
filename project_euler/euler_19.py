@@ -3,7 +3,7 @@
 # You are given the following information, but you may prefer to do some research for yourself.
 #
 # 1 Jan 1900 was a Monday.
-# Thirty days has September,
+# Thirty days hath September,
 # April, June and November.
 # All the rest have thirty-one,
 # Saving February alone,
