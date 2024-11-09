@@ -5,9 +5,13 @@ bronze_2012_mar_1
 
 Level 2 difficulty (requiring intermediate data structure or processing)
 bronze_2019_dec_1
+bronze_2019_jan_1
+bronze_2023_dec_1
 bronze_2011_nov_2
-bronze_2011_dec_1
+bronze_2011_dec_3
 
 Level 3 difficulty (these problems require some logical reasoning before programming)
+bronze_2011_jan_2
 bronze_2011_nov_3
 bronze_2011_dec_2
+bronze_2012_jan_3
