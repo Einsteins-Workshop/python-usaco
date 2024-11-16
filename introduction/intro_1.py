@@ -1,3 +1,10 @@
+# See https://pyflo.net/print/
+# https://pyflo.net/more-printing/
+# https://pyflo.net/variables/
+# https://pyflo.net/input/
+# https://pyflo.net/integers/
+# https://pyflo.net/string-multiplication/
+# https://pyflo.net/lists/
 # 1. Using the print() function, print out 'Hello World!'
 
 # 2. Print a number and then print an empty line.
