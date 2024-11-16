@@ -10,3 +10,20 @@
 # What is the index of the first term in the Fibonacci squence to contain 1000 digits?
 
 # Replace the below with your program.
+fibi=[]
+def fib(x):
+    n1=1
+    n2=1
+    for i in range(x):
+        fibi.append(n1)
+        n3=n1+n2
+        n1=n2
+        n2=n3
+found=False
+x=0
+fib(9999)
+while not found:
+    x=x+1
+    if len(str(fibi[x]))==1000:
+        print(x+1)
+        found=True
