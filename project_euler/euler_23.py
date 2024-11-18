@@ -28,4 +28,7 @@ def isItAbundant(n):
     else:
         return False
 def canItBeWrittenAsTwoAbundantSums(n):
-    pass
+    for i in range(n):
+        if isItAbundant(i) and isItAbundant(n-i):
+            return True
+    return False
