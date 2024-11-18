@@ -10,3 +10,11 @@
 # Evaluate the sum of all the amicable numbers under 10000.
 
 # Replace the below with your program.
+def findFactors( n):
+    factors=[]
+    for i in range( n):
+        if  n%(i+1)==0 and i+1< n:
+            factors.append(i+1)
+    return factors
+def doesItWork( n):
+    pass
