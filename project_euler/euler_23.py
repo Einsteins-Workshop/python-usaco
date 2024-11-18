@@ -16,19 +16,28 @@
 # Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
 
 # Replace the below with your program.
+abundantNumbers={}
+nonAbundantSums=0
 def findFactors(n):
     factors=[]
-    for i in range(n):
-        if n%(i+1)==0 and i+1<n:
-            factors.append(i+1)
+    for i in range(1,int(n**0.5)+1):
+        if n%i==0:
+            factors.append(i)
+            if i!=n/i and i!=1:
+                factors.append(n/i)
     return factors
 def isItAbundant(n):
-    if sum(findFactors(n))>n:
-        return True
-    else:
-        return False
+    return abundantNumbers.get(n)!=None
 def canItBeWrittenAsTwoAbundantSums(n):
     for i in range(n):
         if isItAbundant(i) and isItAbundant(n-i):
             return True
     return False
+limit=28123
+for x in range(limit):
+    if sum(findFactors(x))>x:
+        abundantNumbers[x]=x
+for i in range(limit):
+    if canItBeWrittenAsTwoAbundantSums(i)==False:
+        nonAbundantSums=nonAbundantSums+i
+print(nonAbundantSums)
