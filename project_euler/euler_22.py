@@ -13,3 +13,7 @@
 # What is the total of all the name scores in the file?
 
 # Replace the below with your program.
+letters=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+def nameScore(name):
+    name=str(name)
+    
