@@ -35,16 +35,15 @@ def monthLength(m, y):
         return 31
 def daysFromJanFirst1900(d, m, y):
     daysTotal=0
-    ye=1900
-    for ye in range(y-1900):
+    for ye in range(1900,y):
         if isLeap(ye):
             daysTotal=daysTotal+366
         else:
             daysTotal=daysTotal+365
-    mo=1
-    for mo in range(m-1):
+    for mo in range(1,m-1):
         daysTotal=daysTotal+monthLength(mo, y)
+    daysTotal=daysTotal+d-1
     return daysTotal
 def isSunday(d, m, y):
-    pass
-print(daysFromJanFirst1900(1,1,1901))
+    print(d%7)
+print(isSunday(1,1,1900))
