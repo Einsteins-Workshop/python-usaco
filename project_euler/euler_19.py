@@ -40,10 +40,21 @@ def daysFromJanFirst1900(d, m, y):
             daysTotal=daysTotal+366
         else:
             daysTotal=daysTotal+365
-    for mo in range(1,m-1):
+    for mo in range(1,m):
         daysTotal=daysTotal+monthLength(mo, y)
     daysTotal=daysTotal+d-1
     return daysTotal
 def isSunday(d, m, y):
-    print(d%7)
-print(isSunday(1,1,1900))
+    return daysFromJanFirst1900(d,m,y)%7==6
+def tomorrow(d,m,y):
+    d=d+1
+    if d>monthLength(m,y):
+        d=1
+        m=m+1
+    if m>12:
+        m=1
+        y=y+1
+    return [d,m,y]
+idk=10
+for i in range(idk):
+    pass

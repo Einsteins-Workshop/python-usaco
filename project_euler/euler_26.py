@@ -19,4 +19,24 @@
 # fraction part.
 
 # Replace the below with your program.
-print(7)
+n=0
+counter=1
+ab=0
+primer=[2]
+for i in range(200000):
+    if i>2:
+        someSortOfVarible=i**0.5
+        for x in primer:
+            if i%x==0:
+                break
+            elif x>someSortOfVarible:
+                primer.append(i)
+                break
+for a in range(-1000,1000):
+    for b in range(-1000,1000):
+        while n**2+a*n+b in primer:
+            n=n+1
+        if n>counter:
+            counter=n
+            ab=a*b
+            print(ab)
