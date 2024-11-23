@@ -35,9 +35,9 @@ print('5')
 # 6. Create a list of numbers from 0 to 5
 print('012345')
 # 7. Create a list from number_1, number_2, and number_3
-print(number_1,number_2,number_3)
 
-# 8. Print out the whole list and each of the three numbers in the list you created, each on their
+thislist = [number_1,number_2,number_3]
+print(thislist)#in the list you created, each on their
 # own line.
 print(2)
 print(4)
@@ -59,5 +59,10 @@ true_number = int(number)
 print(true_num+true_number)
 # 13. Read a line of numbers, use the split() function to separate them into an array, and then print
 # them.
-
+mynums = input('Tell me a line of numbers separated by spaces.')
+x = mynums.split()
+print(x)
 # 14. For the array of numbers generated in step 13, print out each element times 2.
+primes = [mynums]
+for prime in x:
+    print(prime)
