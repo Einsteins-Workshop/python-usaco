@@ -14,7 +14,7 @@
 day=1
 date=1
 month=1
-year=1900
+year=1901
 def isLeap(y):
     if y%4==0:
         if y%100!=0 or y%400==0:
@@ -47,14 +47,27 @@ def daysFromJanFirst1900(d, m, y):
 def isSunday(d, m, y):
     return daysFromJanFirst1900(d,m,y)%7==6
 def tomorrow(d,m,y):
-    d=d+1
-    if d>monthLength(m,y):
-        d=1
-        m=m+1
-    if m>12:
-        m=1
-        y=y+1
-    return [d,m,y]
-idk=10
-for i in range(idk):
-    pass
+    nd=d
+    nm=m
+    ny=y
+    nd=d+1
+    if nd>monthLength(m,y):
+        nd=1
+        nm=m+1
+    if nm>12:
+        nm=1
+        ny=y+1
+    return [nd,nm,ny]
+sundaysOn1st=0
+
+while day<=31 and month<=12 and year<=2000:
+    if month==1 and isSunday(day,month,year):
+        sundaysOn1st=sundaysOn1st+1
+    tomorrowing=tomorrow(day,month,year)
+    day=tomorrowing[0]
+    month=tomorrowing[1]
+    year=tomorrowing[2]
+    print(day,month,year)
+print(sundaysOn1st)
+while True:
+    print(isSunday(int(input("D?:")),int(input("M?:")),int(input("Y?:"))))

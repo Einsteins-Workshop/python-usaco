@@ -43,7 +43,7 @@
 # Fill out the following function, which should return the correct answer for a file with
 # the correct input file format.
 def determine_solution(file_name):
-    return "110000100111"
+    return correct_answer
 
 
 # Proper format to be evaluated by USACO
