@@ -19,6 +19,12 @@ greeting = "Hello, "
 # 4. Print two the greeting and the name together on the same line. It should print 'Hello, Allanna'
 # Also, try it with an exclamation pint added to the end of the line.
 
+print(None)
+Hoi = ['banna','ono','chop','fire']
+print(Hoi[2])
+Hoi[2] = 'water'
+print(Hoi[2])
+
 # 5. Print a number and a string together. It could print, for example, 'Hello, 5'. You can also try
 # printing both variables without using concatenation, as additional arguments to print()
 #
