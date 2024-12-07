@@ -50,7 +50,56 @@
 # Fill out the following function, which should return the correct answer for a file with
 # the correct input file format.
 def determine_solution(file_name):
-    return "7\n2\n7\n"
+    cows = []
+    cow_candidates = []
+    last_cow_height = 0
+    canes = []
+    with open(file_name, 'r') as file:
+        file.readline()
+        for cow_string in file.readline().rstrip().split(' '):
+            cow_height = int(cow_string)
+            new_cow = Cow(cow_height)
+            if cow_height > last_cow_height:
+                cow_candidates.append(new_cow)
+                last_cow_height = cow_height
+            cows.append(new_cow)
+
+        canes = [int(cane_string) for cane_string in file.readline().rstrip().split(' ')]
+
+    for cane in canes:
+        current_eaten = 0
+        counter = 0
+        while counter < len(cow_candidates):
+            cow = cow_candidates[counter]
+            if cow.height() >= cane:
+                # Cow eats the rest of the cane
+                cow.eat(cane - current_eaten)
+                break
+            elif cow.height() > current_eaten:
+                # Cow eats up to height
+                new_current_eaten = cow.height()
+                cow.eat(new_current_eaten - current_eaten)
+                current_eaten = new_current_eaten
+                counter += 1
+            else:
+                # Sad cow is shorter than her prior, so cannot eat any longer
+                del cow_candidates[counter]
+
+    return "".join([f"{cow.height()}\n" for cow in cows])
+
+
+class Cow:
+    def __init__(self, height):
+        self.__height = height
+
+    def __repr__(self):
+        return str(self.__height)
+
+    def height(self):
+        return self.__height
+
+    def eat(self, length):
+        self.__height += length
 
 
 # Proper format to be evaluated by USACO
