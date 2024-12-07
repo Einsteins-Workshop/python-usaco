@@ -1,3 +1,10 @@
+# See https://pyflo.net/print/
+# https://pyflo.net/more-printing/
+# https://pyflo.net/variables/
+# https://pyflo.net/input/
+# https://pyflo.net/integers/
+# https://pyflo.net/string-multiplication/
+# https://pyflo.net/lists/
 # 1. Using the print() function, print out 'Hello World!'
 
 # 2. Print a number and then print an empty line.
@@ -11,6 +18,12 @@ greeting = "Hello, "
 
 # 4. Print two the greeting and the name together on the same line. It should print 'Hello, Allanna'
 # Also, try it with an exclamation pint added to the end of the line.
+
+print(None)
+Hoi = ['banna','ono','chop','fire']
+print(Hoi[2])
+Hoi[2] = 'water'
+print(Hoi[2])
 
 # 5. Print a number and a string together. It could print, for example, 'Hello, 5'. You can also try
 # printing both variables without using concatenation, as additional arguments to print()
