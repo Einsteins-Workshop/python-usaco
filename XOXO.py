@@ -52,7 +52,7 @@ while winner == '=':
         winner = 'x'
     elif board[4] == '[x]' and board[5] == '[x]' and board[6] == '[x]':
         winner = 'x'
-    elif board[7] == '[x]' and board[7] == '[x]' and board[9] == '[x]':
+    elif board[7] == '[x]' and board[8] == '[x]' and board[9] == '[x]':
         winner = 'x'
     elif board[1] == '[x]' and board[4] == '[x]' and board[7] == '[x]':
         winner = 'x'
