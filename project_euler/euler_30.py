@@ -12,4 +12,16 @@
 # Find the sum of all the numbers that can be written as the sum of fifth powers of their digits.
 #
 # Replace the code below with your program.
-print(1634+8208+9474)
+def quisSum(num):
+    if num==1:
+        return False
+    num=str(num)
+    sum=0
+    for i in range(len(num)):
+        sum=sum+int(num[i])**5
+    return str(sum)==num
+gitTacoed=0
+for x in range(1000000):
+    if quisSum(x):
+        gitTacoed=gitTacoed+x
+print(gitTacoed)

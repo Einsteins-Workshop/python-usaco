@@ -67,13 +67,14 @@
 # Fill out the following function, which should return the correct answer for a file with
 # the correct input file format.
 def determine_solution(file_handle):
-    return "2\n-1\n1 2\n3\n-1\n"
+    oogaOogaBawooga=file_handle.readline().strip("\n")
+    print(oogaOogaBawooga)
 
-
+print(determine_solution(open("data_files/1.in", "r")))
 # Proper format to be evaluated by USACO
 #  print(str(determine_solution(sys.stdin)))
 #  exit()
-
+exit()
 # Checking against all local files
 for case in range(1, 15):
     input_file_name = f"data_files/{case}.in"
