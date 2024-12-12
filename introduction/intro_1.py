@@ -27,7 +27,7 @@ print('\n')
 print(greeting,name)
 
 print(None)
-Hoi = ['banna','ono','chop','fire']
+Hoi = ['banana','ono','chop','fire']
 print(Hoi[2])
 Hoi[2] = 'water'
 print(Hoi[2])
@@ -71,4 +71,5 @@ print(x)
 # 14. For the array of numbers generated in step 13, print out each element times 2.
 primes = [mynums]
 for prime in x:
-    print(prime)
+    print(int(prime)*2)
+
