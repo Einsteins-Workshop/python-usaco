@@ -7,4 +7,16 @@
 #
 # How many ciruclar primes are there below one million?
 #
-print(13)
+def turnthecircleification(thecircleificatoriflyationer):
+    thecircleificatoriflyationer=str(thecircleificatoriflyationer)
+    looooooooooooogcircle=[]
+    actuallyimabunnythateatstacocats=1
+    for iamatacocat in thecircleificatoriflyationer:
+        if actuallyimabunnythateatstacocats==1:
+            temporaryificationeration=iamatacocat
+            actuallyimabunnythateatstacocats=0
+        else:
+            looooooooooooogcircle.append(iamatacocat)
+    looooooooooooogcircle.append(temporaryificationeration)
+    return "".join(looooooooooooogcircle)
+print(turnthecircleification(197))

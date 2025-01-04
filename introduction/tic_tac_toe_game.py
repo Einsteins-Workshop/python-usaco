@@ -53,6 +53,7 @@ def turn(player, board):
     else:
         player="X"
     if isWin(board):
+        drawBoard(board)
         print(f"{whoWon(board)} won!")
         return
     turn(player, board)
