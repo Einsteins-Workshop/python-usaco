@@ -9,4 +9,22 @@
 
 # Replace the below with your program.
 #print(2+8+34)
+total = 0
+number_1 = 1
+number_2 = 1+1
+number_3 = 8
 
+#for x i= range(4000001):
+    #print(x)
+    #my_list = [x]# #print(my_list[1])
+
+while number_3 < 4000001:
+  #  print(number_3)
+    number_3 = number_2 + number_1
+    number_1 = number_2
+    number_2 = number_3
+
+    c = number_3 % 2
+    if (c == 0):
+        total = total + number_3
+print(total)
