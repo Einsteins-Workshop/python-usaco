@@ -5,5 +5,19 @@
 
 # Find the sum of all multiples of 3 or 5 below 1000
 
-# Replace the below with your program.
-print(3+5+6+9)
+# Replace the below with your program
+total = 0
+for x in range(1000):
+    c = x % 3
+    d = x % 5
+    if (c == 0):
+        total = total + x
+    elif (d == 0):
+        total = total + x
+print(total)
+
+
+#Yay! I got it correct! 1/4/2025
+#n =
+#numbers = (5*n)
+#print(numbers)

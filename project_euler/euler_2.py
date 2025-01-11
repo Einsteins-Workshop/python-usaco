@@ -8,4 +8,5 @@
 # find the sum of the even-valued terms.
 
 # Replace the below with your program.
-print(2+8+34)
+#print(2+8+34)
+
