@@ -14,3 +14,6 @@
 
 if __name__ == '__main__':
     n = int(input())
+    if (i < n) and (i > -1):
+        for x in i:
+            print(x^2)

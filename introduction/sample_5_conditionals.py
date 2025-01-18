@@ -13,7 +13,7 @@ if number == 10:
 if not(number == 3):
     print("Your number is not 3")
 
-if (number % 3 == 0) or (number %2 == 0):
+if (number % 3 == 0) or (number % 2 == 0):
     print("Your number is divisible by either 2 or 3")
 
 # Multiple if statements can be chained with elif and a default clause can be added with else.

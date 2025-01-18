@@ -10,9 +10,9 @@
 # Replace the below with your program.
 #print(2+8+34)
 total = 0
-number_1 = 1
-number_2 = 1+1
-number_3 = 8
+number_1 = 0
+number_2 = 0+1
+number_3 = 1
 
 #for x i= range(4000001):
     #print(x)
