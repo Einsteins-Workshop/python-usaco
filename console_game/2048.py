@@ -67,23 +67,31 @@ import random
 WIN = 1
 LOSS = 2
 GAME_NOT_OVER = 3
-
+def print_grid(grid):
+    print(grid[0])
+    print(grid[1])
+    print(grid[2])
+    print(grid[3])
+    print(grid[2][3])
+print_grid([[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]])
 def start_game():
-    # TODO: Create a grid that
-    grid = []
+    #Create a grid that
+    grid = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
 
-    # TODO: Print to the user the commands that they can use. The simplest approach
+    # Print to the user the commands that they can use. The simplest approach
     # is to use w or W for moving up, s or S for moving down, a or A for moving left, and d or D for moving
     # right.
-
-    # TODO: Call the method to add a new 2 to the grid
-
-    # TODO: return the grid
-
+    print(f"Use WASD to move!")
+    # Call the method to add a new 2 to the grid
+    add_new_2()
+    # return the grid
+    return grid
 def add_new_2(grid):
-    # TODO: This should add a 2 to a random empty position in the grid. Be sure to check to make
+    # This should add a 2 to a random empty position in the grid. Be sure to check to make
     # sure that the 2 is not added to a cell which already has a number. Although not necessary,
     # it is good coding practice to return the grid
+    import random
+
     return
 
 def check_win_or_loss(grid):
