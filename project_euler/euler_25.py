@@ -10,7 +10,9 @@
 # What is the index of the first term in the Fibonacci squence to contain 1000 digits?
 import sys
 totallength=input("howbigdigitsdouwant")
-sys.set_int_max_str_digits(int(totallength)+1)
+if (int(totallength) > 700): {
+    sys.set_int_max_str_digits(int(totallength)+1)
+}
 fiblist = [1, 1]
 count = 2
 addthemalltogether = 2

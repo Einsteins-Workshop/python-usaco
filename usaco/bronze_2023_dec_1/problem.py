@@ -50,9 +50,34 @@
 # Fill out the following function, which should return the correct answer for a file with
 # the correct input file format.
 def determine_solution(file_name):
-    return "7\n2\n7\n"
+    gimmiefiles = open(file_name, "r")
 
+    looplimit = gimmiefiles.readline().rstrip()
+    cows = gimmiefiles.readline().rstrip()
+    canes = gimmiefiles.readline().rstrip()
 
+    looplimit = [int(x) for x in looplimit.split(" ")]
+    cows = [int(x) for x in cows.split(" ")]
+    canes = [int(x) for x in canes.split(" ")]
+
+    del looplimit[0]
+    looplimit = looplimit[0]
+    for x in range(looplimit):
+        curcanehei = [0, canes.pop(0)]
+        for (i, cow) in enumerate(cows):
+            if cows[i] > curcanehei[0]:
+                if cows[i] > curcanehei[1]:
+                    cows[i] = cows[i] + curcanehei[1] - curcanehei[0]
+                    curcanehei[0] = curcanehei[1]
+                else:
+                    cowtemp = cows[i]
+                    cows[i] = cows[i] * 2 - curcanehei[0]
+                    curcanehei[0] = cowtemp
+
+    cows = [str(x) for x in cows]
+    printernullvoidpublicstaticvoidmain = "\n".join(cows) + "\n"
+    print(printernullvoidpublicstaticvoidmain)
+    return (printernullvoidpublicstaticvoidmain)
 # Proper format to be evaluated by USACO
 # with open("gymnastics.out", "w") as f:
 #    f.write(str(determine_solution("gymnastics.in")))
