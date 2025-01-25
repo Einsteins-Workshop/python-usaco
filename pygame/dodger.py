@@ -267,8 +267,8 @@ class Enemy(pygame.sprite.Sprite):
 
         # Setting the speed so they just go down vertically. You should adjust with random speeds,
         # recommendation is a random integer from 2 to 6
-            self.x_speed = 0
-            self.y_speed = 4 # Change to random number
+        self.x_speed = 0
+        self.y_speed = 4 # Change to random number
 
     # This is called when the sprite group that it is a part of has its update function called
     def update(self):
