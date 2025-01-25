@@ -60,11 +60,17 @@ def determine_solution(file_name):
     cows = [int(x) for x in cows.split(" ")]
     canes = [int(x) for x in canes.split(" ")]
 
+    big_cows = list(range(len(cows)))
+    nwbigcows = 0
     del looplimit[0]
     looplimit = looplimit[0]
     for x in range(looplimit):
+        CHONKER = -1
+        print("cane number ",x)
         curcanehei = [0, canes.pop(0)]
-        for (i, cow) in enumerate(cows):
+        big_cows = nwbigcows
+        for i in big_cows:
+            nwbigcows=big_cows
             if cows[i] > curcanehei[0]:
                 if cows[i] > curcanehei[1]:
                     cows[i] = cows[i] + curcanehei[1] - curcanehei[0]
@@ -73,10 +79,17 @@ def determine_solution(file_name):
                     cowtemp = cows[i]
                     cows[i] = cows[i] * 2 - curcanehei[0]
                     curcanehei[0] = cowtemp
+            if cows[i] > CHONKER:
+                CHONKER = cows[i]
+            else:
+                nwbigcows.reverse()
+                nwbigcows.remove(i)
+                nwbigcows.reverse()
 
     cows = [str(x) for x in cows]
     printernullvoidpublicstaticvoidmain = "\n".join(cows) + "\n"
     print(printernullvoidpublicstaticvoidmain)
+
     return (printernullvoidpublicstaticvoidmain)
 # Proper format to be evaluated by USACO
 # with open("gymnastics.out", "w") as f:
