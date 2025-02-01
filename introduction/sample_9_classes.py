@@ -22,7 +22,7 @@ class Character:
     # convention self. The "self" parameter does not need to be called, and is implicit with the
     # object.method() call method for objects.
     def is_alive(self):
-        return self._hp <= 0
+        return (self._hp > 0)
 
     def attack(self, other_character):
         # Note that class functions (called methods) are called by calling the object with the . operator
@@ -30,7 +30,10 @@ class Character:
             other_character.take_damage(self._attack)
 
     def take_damage(self, damage):
-        self._hp
+        if damage >= self._hp:
+            self._hp = 0
+        else:
+            self._hp = self._hp - damage
 
     def print_status(self):
         if self.is_alive():
@@ -40,7 +43,7 @@ class Character:
 
 
 orc = Character(10, 5, 3)
-wolf = Character(3, 1, 0)
+wolf = Character(6, 1, 0)
 orc.attack(wolf)
 
 print("For orc:")
@@ -62,7 +65,7 @@ class PlayerCharacter(Character):
         if self.is_alive():
             print(f"{self._name} has {self._hp} hit points remaining.")
         else:
-            print(f"{self.name} is dead")
+            print(f"{self._name} is dead")
 
 
 gimli = PlayerCharacter("Gimli", 20, 10, 4)
@@ -71,3 +74,5 @@ print("After Gimli attacks the orc:")
 orc.print_status()
 
 gimli.print_status()
+
+print(gimli._attack)
