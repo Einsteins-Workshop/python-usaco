@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 # https://projecteuler.net/problem=38
 #
 # Take the number and multiply it by each of 1, 2, and 3:

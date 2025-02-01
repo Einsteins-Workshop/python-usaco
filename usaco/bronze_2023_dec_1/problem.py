@@ -1,5 +1,5 @@
 # See https://usaco.org/index.php?page=viewproblem2&cpid=1347
-
+import time
 # Farmer John's cows have quite the sweet tooth, and they especially enjoy eating candy canes! FJ has N
 #  total cows, each with a certain initial height and he wants to feed them M
 #  candy canes, each also of varying height (1≤N,M≤2⋅105).
@@ -52,6 +52,7 @@
 def determine_solution(file_name):
     gimmiefiles = open(file_name, "r")
 
+    lastprint = 0
     looplimit = gimmiefiles.readline().rstrip()
     cows = gimmiefiles.readline().rstrip()
     canes = gimmiefiles.readline().rstrip()
@@ -59,28 +60,38 @@ def determine_solution(file_name):
     looplimit = [int(x) for x in looplimit.split(" ")]
     cows = [int(x) for x in cows.split(" ")]
     canes = [int(x) for x in canes.split(" ")]
-
     big_cows = list(range(len(cows)))
-    nwbigcows = 0
+    nwbigcows = big_cows.copy()
     del looplimit[0]
     looplimit = looplimit[0]
+    #nwnwbigcows = big_cows.copy()
+    maxcanes = len(canes)
+
     for x in range(looplimit):
+        #print("candycane, ", x+1)
         CHONKER = -1
-        print("cane number ",x)
         curcanehei = [0, canes.pop(0)]
-        big_cows = nwbigcows
+        big_cows = nwbigcows.copy()
+        #big_cows = nwnwbigcows
+        nwnwbigcows = []
+        if (lastprint != round(x/maxcanes*10000)/100):
+            lastprint =round(x/maxcanes*10000)/100
+            print(f"{len(big_cows)} cows being processed and {lastprint}% complete")
         for i in big_cows:
-            nwbigcows=big_cows
+            #print(i)
+            #print(cows[i])
             if cows[i] > curcanehei[0]:
                 if cows[i] > curcanehei[1]:
                     cows[i] = cows[i] + curcanehei[1] - curcanehei[0]
                     curcanehei[0] = curcanehei[1]
+                    break
                 else:
                     cowtemp = cows[i]
                     cows[i] = cows[i] * 2 - curcanehei[0]
                     curcanehei[0] = cowtemp
             if cows[i] > CHONKER:
                 CHONKER = cows[i]
+                #nwnwbigcows.append(i) # issuie was nwnwbigcows.append(cows[i]) (was pointing to cow number not cow placevalue)
             else:
                 nwbigcows.reverse()
                 nwbigcows.remove(i)
