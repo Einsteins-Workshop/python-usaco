@@ -13,7 +13,8 @@
 class Character:
     # The __init__ function is a special function that creates an object. You can pass parameters to
     # represent initial data, and is by convention stored to self.
-    def __init__(self, hp, attack, defense):
+    def __init__(self, type, hp, attack, defense):
+        self._type = type
         self._hp = hp
         self._attack = attack
         self._defense = defense
@@ -22,7 +23,7 @@ class Character:
     # convention self. The "self" parameter does not need to be called, and is implicit with the
     # object.method() call method for objects.
     def is_alive(self):
-        return (self._hp > 0)
+        return self._hp > 0
 
     def attack(self, other_character):
         # Note that class functions (called methods) are called by calling the object with the . operator
@@ -30,20 +31,20 @@ class Character:
             other_character.take_damage(self._attack)
 
     def take_damage(self, damage):
-        if damage >= self._hp:
+        if self._hp <= damage:
             self._hp = 0
         else:
-            self._hp = self._hp - damage
+            self._hp -= damage
 
     def print_status(self):
         if self.is_alive():
-            print(f"This character has {self._hp} hit points remaining.")
+            print(f"This {self._type} has {self._hp} hit points remaining.")
         else:
-            print("This character is dead")
+            print(f"This {self._type} is dead")
 
 
-orc = Character(10, 5, 3)
-wolf = Character(6, 1, 0)
+orc = Character("orc", 10, 5, 3)
+wolf = Character("wolf", 3, 1, 0)
 orc.attack(wolf)
 
 print("For orc:")
@@ -58,7 +59,7 @@ class PlayerCharacter(Character):
     def __init__(self, name, hp, attack, defense):
         self._name = name
         # This calls the Character.__init__ method
-        super().__init__(hp, attack, defense)
+        super().__init__("pc", hp, attack, defense)
 
     # This overwrites the behavior of print_status
     def print_status(self):
