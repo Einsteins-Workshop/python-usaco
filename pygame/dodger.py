@@ -81,7 +81,6 @@ class Player(pygame.sprite.Sprite):
         self.rect.center = (10, 10)
 
         # set the initial position and speed
-        self.rect.center = (10, 10)
         self.x_speed = 0 # Change this to some value
         self.y_speed = 0 # Change this to some value
 
