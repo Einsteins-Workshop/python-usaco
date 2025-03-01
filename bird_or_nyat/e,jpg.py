@@ -33,9 +33,10 @@ while z < 2000:
     image_categories = ['forest', 'bird', 'PIGGGG']
     path = Path('bird_or_nyaat')
     for image_type in image_categories:
-        test_file = path / image_type  # This is a special operator for Path objects, which creates a subdirectory
-        test_file.mkdir(exist_ok=True) # Create the subdirectory with the image category
+        test_dir = path / image_type  # This is a special operator for Path objects, which creates a subdirectory
+        test_dir.mkdir(exist_ok=True) # Create the subdirectory with the image category
         results = search_images_ddg(f"{image_type} photo", max_images=6)
+        tst_file =
         download_url(results[5], test_file)
         resize_images(test_file, max_size=400, dest=test_file) # Resize to only 400 pixels in size
         image = Image.open(test_file)
