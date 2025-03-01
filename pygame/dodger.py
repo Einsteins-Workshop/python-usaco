@@ -57,7 +57,7 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, screen_width, screen_height, color):
         # We will be calling the inherited Sprite's initialization function, which are
         # required for some of the inherited methods.
-        pygame.sprite.Sprite.__init(self)
+        pygame.sprite.Sprite.__init__(self)
 
         # Define how it works, first set up folders with sprite images and the game
         # This is a bit magic, it gets the folder that the current file is in

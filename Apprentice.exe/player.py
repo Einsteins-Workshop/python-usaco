@@ -16,8 +16,8 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (10,10)
 
-        self.x_speed = 3
-        self.y_speed = 3
+        self.x_speed = 6
+        self.y_speed = 6
 
         self.width = screen_width
         self.height = screen_height
@@ -27,6 +27,11 @@ class Player(pygame.sprite.Sprite):
             self.rect.right = self.width -1
         if self.rect.left <= 0:
             self.rect.left = 1
+        if self.rect.bottom >= self.height:
+            self.rect.bottom = self.height -1
+        if self.rect.top <= 0:
+            self.rect.top = 1
+
     def move_left(self):
         self.rect.x -= self.x_speed
 

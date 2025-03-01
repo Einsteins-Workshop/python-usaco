@@ -1,5 +1,5 @@
 # fastai methods
-from fastbook import download_images, resize_images, verify_images, get_image_files
+from   fastbook import download_images, resize_images, verify_images, get_image_files
 from fastbook import DataBlock, ImageBlock, CategoryBlock, RandomSplitter, Resize
 from fastbook import parent_label, vision_learner, error_rate
 
@@ -20,9 +20,7 @@ if not test_file.exists():
     download_url(urls[0], test_file, show_progress=True)
 
 image = Image.open(test_file)
-image.thumbnail((256, 256)) # This resizes the file to a thumbnail size of 256 x 256 pixels
-
-exit()
+image.thumbnail((256, 256)) # This resizes the file to a thumbn il size of 256 x 256 pixels
 
 # See https://pixspy.com/ in order to see how an image is stored as an array of numbers, equating to a list of
 # pixels, each of which contain a triple of RGB values.

@@ -2,6 +2,7 @@ import pygame
 import random
 from os import path
 from player import Player
+from BDPRIZE import Prize
 
 pygame.init()
 width = 600
@@ -24,12 +25,19 @@ all_sprites = pygame.sprite.Group()
 player = Player(width, height, BLACK)
 all_sprites.add(player)
 all_players.add(player)
+all_prizes = pygame.sprite.Group()
+prize = Prize(width, height, RED)
+all_sprites.add(prize)
+all_prizes.add(prize)
+prizes_on_screen = 1
 
 running = True
 
 while running == True:
     clock.tick(FPS)
-    all_sprites.update()
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
 
     pressed_keys = pygame.key.get_pressed()
     if pressed_keys[pygame.K_LEFT]:
@@ -40,14 +48,18 @@ while running == True:
         player.move_up()
     if pressed_keys[pygame.K_DOWN]:
         player.move_down()
-
-
+    hits = pygame.sprite.groupcollide(all_prizes, all_players, True, False)
+    for prize in hits:
+        prizes_on_screen -= 1
+    if prizes_on_screen == 0:
+        prize = Prize(width, height, RED)
+        all_sprites.add(prize)
+        all_prizes.add(prize)
+        prizes_on_screen = 1
+    all_sprites.update()
     #Draw
     game_surface.fill(WHITE)
     all_sprites.draw(game_surface)
 
     pygame.display.flip()
     #Other stuff
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
