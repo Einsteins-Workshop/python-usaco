@@ -15,7 +15,7 @@ if __name__ == '__main__':
     from pathlib import Path
 
     # Save a test image to a file
-    urls = search_images_ddg('toucan photos', max_images=1)
+    urls = search_images_ddg(input("WhAt dO YoU WaNt tO SeArCh fOr? "), max_images=1)
     test_file = Path('test.jpg')
     if not test_file.exists():
         download_url(urls[0], test_file, show_progress=True)
@@ -29,8 +29,8 @@ if __name__ == '__main__':
 
 
     # Create the training data set, which will consist of up to 200 images resulting from searches on forest and birds
-    image_categories = ['forest', 'bird']
-    path = Path('bird_or_not')
+    image_categories = ['cat', 'bunny']
+    path = Path('CatOrBunny')
 
     if not path.exists():
         path.mkdir(exist_ok=True) # Create the overall bird_or_not directory
@@ -63,4 +63,3 @@ if __name__ == '__main__':
     # Test your model on the test file.
     is_bird, _, probability = learn.predict(test_file)
     print(f"This is a: {is_bird}.")
-    print(f"Probability it's a bird: {probability[0]:.4f}")
