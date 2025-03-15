@@ -12,7 +12,7 @@ class Prize(pygame.sprite.Sprite):
 
         self.rect = self.image.get_rect()
 
-        self.rect.center = (250, 250)
+        self.rect.center = (random.randint(25,screen_width -25),random.randint(25,screen_height - 25))
         self.x_speed = random.randint(-5,5)
         self.y_speed = random.randint(-5,5)
 
@@ -24,10 +24,10 @@ class Prize(pygame.sprite.Sprite):
         self.rect.y += self.y_speed
 
         if self.rect.right >+ self.width:
-            self.x_speed *= -1
+            self.x_speed *= -1.1
         if self.rect.left <= 0:
-            self.x_speed *= -1
+            self.x_speed *= -1.1
         if self.rect.bottom >+ self.height:
-            self.y_speed *= -1
+            self.y_speed = -1.1*abs(self.y_speed)
         if self.rect.top <= 0:
-            self.y_speed *= -1
+            self.y_speed = 1.1*abs(self.y_speed)
