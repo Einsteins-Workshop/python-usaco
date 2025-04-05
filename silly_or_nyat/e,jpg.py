@@ -61,12 +61,11 @@ if __name__ == '__main__':
 
     learn = vision_learner(data_loaders, resnet18)
     learn.fine_tune(3)
-
     # Test your model on the test file.
     is_Gay, _, probability = learn.predict(test_file)
     if probability[0] > probability [1]:
-        morelikely = probability[0] *10
+        morelikely = probability[0] *100
     else:
-        morelikely= probability [1] *10
-    print(f"This is a: {is_Gay}.")
+        morelikely= probability [1] *100
+    print(f"This is a: {is_Gay}.%")
     print(f"Probability it's a: {is_Gay} {morelikely:.4f}")
