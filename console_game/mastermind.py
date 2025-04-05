@@ -42,10 +42,10 @@ while True:
                 score=score-1
                 for i in range(len(shuffled)):
                     if userGuess[i] == shuffled[i]:
-                        print(f"Number {i + 1} is correct.")
+                        print(f"number {i + 1} is correct.")
                         truedat=True
                 if truedat==False:
-                    print("Everything is wrong")
+                    print("everything is wrong")
     print("You won!!! Yay!")
     score=score+10
     print(f"Your score is {score}.")

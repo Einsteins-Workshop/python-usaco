@@ -110,7 +110,7 @@ while True:
                 print("I won. Better luck next time.")
                 score=score-sum(computervalues)
             else:
-                print("We tied. I hope your happy.")
+                print("We tied. I hope you're happy.")
                 score=score+sum(playervalues)-sum(computervalues)
     if input("Play another round?: ")=="No":
         break
