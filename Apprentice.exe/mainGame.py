@@ -11,25 +11,25 @@ game_surface = pygame.display.set_mode((width,height))
 pygame.display.set_caption('Game')
 clock = pygame.time.Clock()
 FPS = 60
+score = 0
+font = pygame.font.Font(None,200)
+stage = 1
 
-#Color
+# Color
 BLACK = (0,0,0)
 WHITE = (255,255,255)
 RED = (255,0,0)
 GREEN = (0,255,0)
 BLUE = (0,0,255)
 
-#Other
+# Other
 all_players = pygame.sprite.Group()
 all_sprites = pygame.sprite.Group()
 player = Player(width, height, BLACK)
 all_sprites.add(player)
 all_players.add(player)
 all_prizes = pygame.sprite.Group()
-prize = Prize(width, height, RED)
-all_sprites.add(prize)
-all_prizes.add(prize)
-prizes_on_screen = 1
+prizes_on_screen = 0
 
 running = True
 
@@ -50,16 +50,21 @@ while running == True:
         player.move_down()
     hits = pygame.sprite.groupcollide(all_prizes, all_players, True, False)
     for prize in hits:
+        score += 1
         prizes_on_screen -= 1
     if prizes_on_screen == 0:
-        prize = Prize(width, height, RED)
-        all_sprites.add(prize)
-        all_prizes.add(prize)
-        prizes_on_screen = 1
+        stage += 1
+        for x in range(1,stage):
+            prize = Prize(width, height, RED)
+            all_sprites.add(prize)
+            all_prizes.add(prize)
+            prizes_on_screen += 1
     all_sprites.update()
-    #Draw
+    # Draw
     game_surface.fill(WHITE)
+    text = font.render("score:" + score.__str__(), True, BLACK)
+    game_surface.blit(text, (0, 0))
     all_sprites.draw(game_surface)
 
     pygame.display.flip()
-    #Other stuff
+    # Other stuff
