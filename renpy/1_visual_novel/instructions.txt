@@ -1,0 +1,264 @@
+Ren'py is a python-built engine used to create visual novels and games.  Ren'py has its
+own syntax and build process which converts .rpy files into python files, and allows for
+the use of your own custom python code as well. It is an excellent framework for
+introducing a user interface that works well for projects inspired by anime. In this project,
+we will investigate the visual novel structure.
+
+Step 1: Starting a new project
+
+The Ren'py application also serves as its own IDE. Launch the application (if it has not
+already been downloaded for you, see the "Setup notes.pdf" file for more information on
+how to set up the application.  The Ren'py download comes with two built in projects,
+Tutorial and The Question.
+
+Exercise 1a: Try out the Tutorial and The Question projects by selecting them and clicking the
+Launch Project.  Also, try out the King of the Cul-de-sac game.
+
+Exercise 1b: Create a new project.  Use 1280 x 720 dimensions. For editor, I recommend either
+using Atom or the System editor. Look at script.rpy to see an example of a Ren'py script.
+Select your new project and launch it, pressing Start to see the default script.
+
+Step 2: Writing dialogue
+
+Dialogue is extremely simple in Ren'py.  Any string or a combination of two strings will
+add dialogue.  With two strings, the first string will denote the name of the speaker and
+show up in a special header in the dialogue. Special characters, such as double quotes, must
+be escaped with a backslash.
+
+Exercise 2a: Add your own dialog.  Try adding a nameless dialogue of "Hello World". Also
+try having "Karah" speeak "Yo, I am the self-insert narrator of this game."
+
+Note that in the script.py, there is a line that starts with "label start:".  Labels
+represent code blocks, similar to functions in python, and can be referred to by
+a special commands (jump).  The script always starts at the start label, but
+unlike python methods, the script can (and will) pass from label to label unless you
+specify otherwise.
+
+Instead of using characters as strings for their name, you can define characters. These
+allow you to add common styling for a character, and use an abbreviation for it.
+These characters work similar to python variables using the define keyword. You can
+see that the default script has defined an Eileen character.  You can also pass a color
+parameter in order to change the color of the name label, such as:
+
+define l = Character("Lucy", color="#ffcccc")
+
+Exercise 2b: Define your own character with your own custom color.  Have your character
+say some dialog.
+
+Step 3: Adding images
+
+Images in Ren'py are easy to add to your visual novel and game, as both backgrounds and
+foreground images.  All images should be placed in the game/images directory of your
+project. Ren'py can naturally load most image files including .jpg, .png, and .webp.
+
+Exercise 3a: Copy all of the images in the sample_images directory of this repo to the
+directory here to your project. Launch your project, and notice now that the image of
+Eileen should now show up.
+
+The name of image files matter and should contain name parts separated by spaces.  All
+files should have either the name of a character or bg (for background images) followed
+by a description of the character ("lucy mad.png") or a description of the background
+("bg cave.jpg"). File names should only contain lowercase letters, numbers, and underscores
+and should always start with a letter.  The first part is called the tag, so "bg cave.jpg"
+has the bg tag, and the "lucy mad.png" has the lucy tag.
+
+You can display images with the scene and show statements:
+
+scene bg town
+show karah smile
+
+The first will find "bg town.*" image in the images directory and display it in the background.
+The second will overlay the "karah smile.*" image into the scene.
+
+Exercise 3b: Choose one of the bg files in the images directory and show that background.
+Show the image of happy Lucy and have her say dialog of your choice.
+
+The show statement adds an image on top of existing images. It will also replace tags
+with the same name (so there is only one image of Karah, no matter how many times
+you show one. Note that all images are rendered at the same time and do not get
+displayed until a dialog statement or other ui prompt is made. You can also use the hide
+statement to remove the images.
+
+Exercise 3c: Show the image of Karah in her smile position and have her say some
+dialog.  Then show Karah in her snide position and say more dialog.  Note how
+the images changes. Then use "hide Karah" and have Eileen say some other dialog.
+Also, try using the Sylvie image, and change her from sylvie blue smile to
+sylvie green smile.
+
+Step 4: Image positioning
+
+Images are default placed so that they are centered.  You can choose a different position
+using the "at" keyword.  There are specific pre-defined positions called left, right, and
+center where images can be placed. For example,
+
+show eileen happy at left
+
+Exercise 4a: Show Eileen in the center, Sylvie in her blue clothes at the left, and Lucy
+to the right.
+
+You can also put images behind others with the behind statement, and can use it to put
+it behind certain other characters.
+
+Exercise 4b: Have Karah play hide and seek by first placing Karah behind Eileen.  Have her
+make a dialog statement and then have her hide.
+
+Relative positions can be set by adding transform properties. These are added in the next line
+after the show statement followed by a colon. The xalign and y align parameters controls the
+horizontal and vertical placement respectively. An xalign value of 0 places the image on the
+far left, and 1.0 places it at the far right. An yalign value of 0 places the image at the top,
+and 1.0 places it at the bottom, Note that many of the larger character models will always be
+placed on the bottom, and so the yalign value will have no effect.
+
+show karah smile:
+    xalign 0.75, yalign 1.0
+"Ready or not, here I come"
+
+Exercise 4c: Try moving Karah around using xalign and yalign variables.  Try moving around
+the "pikachu upright.png" image as well.
+
+You can also define transform variables that you can refer to them as needed with the
+transform keyword.
+
+transform rightish:
+    xalign 0.7
+
+Exercise 4d: Try creating your own custom xalign position.  Then have Eileen, Sylive, and Lucy
+appear at that location. Do it once simultaneously, and then once sequentially by hiding the older
+image.
+
+Images can also be shown with a movement transition. For instance, the background
+can be removed with a dissolve transition, slowly fading away. Note the following
+indentation:
+
+scene bg town
+with Dissolve(0.5)
+
+You can also pause the scene. To pause the scene for half a second, use:
+
+pause .5
+
+Transitions can also be defined into variables and applied as needed:
+
+define slowdissolve = Dissolve(1.0)
+scene bg town
+with slowdissolve
+
+Exercise 4e: Show a new background (bg file) image with a 1 second dissolve.  Pause
+for 0.5 seconds, the show a different backgound with 0.5 seconds.
+
+You can also slide images with the MoveTransition construct.  There are also
+some predefined transition type, such as zoomin, moveinleft, and ease.  You can see
+https://www.renpy.org/doc/html/transitions.html for the list of transition types. For
+example,
+
+show eileen happy
+with move
+show eileen concerned at left
+with MoveTransition(3.0)
+show eileen happy at right
+with ease
+
+Exercise 4f: Move one of the characters from left to right, using the move, zoomin,
+moveinleft, and ease transitions.
+
+Step 5: Sounds
+
+Sound files that are placed in the audio directory can be used for music or sound
+effects. Ren'Py supports Mad Libs Ogg Vorbis, mp3, and Opus file formats. Music
+is played in a loop and, when the play comand is used, replaced the current music
+being played.
+
+play music "audio/sunflower-slow-drag.ogg"
+
+You can also be introduced with a more gentle fade out. The following fades out the
+prior music for 1 second.
+
+play music "audio/sunflower-slow-drag.ogg" fadeout 1
+
+You can also queue music, which will start the music file after the prior one
+completes, using the queue command.  Music can also be stopped with the stop command, with
+optional fadeout.
+
+Exercise 5a: Copy all of the audio files in exxample_audio to the audio directory
+of your project.  Play the milky-chu_ohchootrain.ogg music file, add some dialog,
+and then play the audio/sunflower-slow-drag.ogg file with 1 second fadeout.
+
+Example 5b: Play the milky-chu_ohchootrain.ogg music file, and queue the audio/sunflower-slow-drag.ogg
+file afterward.  Add some dialog, then add stop the music with 1 second fadeout.
+
+Similar to music, sound files can be queued, and will play after the prior sound
+file is completed.  There is also a voice channel, which can be run simultaneously
+with sound images, and is intended to be used in conjunction with dialog
+
+play sound "audio/tower_clock.ogg"
+play voice "audio/tower_clock.ogg"
+
+Exercise 5c: Play the tower_clock.ogg sound effect file three times in succession.
+
+Step 6: Choices and input
+
+As mentioned earlier, labels are code blocks which can be used in a manner similar to goto
+labels in other languages.  You can use the jump command to do this. Note that this is
+a one-way trip, and the code will not return to the original position.
+
+label start:
+    jump later
+    "This text will not get spoken"
+label later:
+    "This text will get spoken"
+
+You can use the menu command in order to get the player to make a choice. Each
+choice should be an indented colon, like a mini label, and each choice can have
+its own commands that happen after it is chosen
+
+menu:
+    "I choose you Pikachu"
+        jump choice_pikachu
+    "I choose you Squirtle"
+        jump choice_squirtle
+label choice_pikachu
+    ...
+label choice_squirtle
+    ...
+
+ Exercise 6a: Use the menu to ask the player to choose between Pikachu and Squirtle.
+ If the player chooses Pikachu, show the image of Pikachu (pikachu upright.png) and
+ have Pikachu say "Pika Pika".  If they choose Squirtle, have Squirtle say "Sqrtl".
+ Either way, have Sylvie appear and say "Gotta catch them all".
+
+ You cam call python code directly by adding a $ in front of your python code, embedded
+ directly with the Ren'Py commands. The following sets the pokemon variable
+
+$ pokemon = "Bulbasaur"
+
+You can then refer to your variable in other renpy statements
+
+"Eileen" "Here is [pokemon]"
+
+Exercise 6b: In your Exercise 6a example, save what pokemon the player chosen.  Then
+have Sylvie tell the player "You chose Pikachu" if they chose Pikachu and "You chose Squirtle"
+if they chose Squirtle.  Then her say goodnight to that pokemon.  Afterwards, hide the
+appropriate pokemon image.
+
+You can also run blocks of python by using a python block.  This allows you to use Python
+built-in commands such as input, if you use the renpy object.
+
+python:
+    player_name = renpy.input("Enter a number")
+
+Exercise 6c: Ask the user for their name with renpy.input.  Make sure to get rid of any
+trailing white space, and give a default name if the user does not choose a name.  Create
+a Ren'Py Character with the player's name and have Eileen say "Hi [player_name]" to the player.
+Have the player respond back with "The last thing I remembered was the flash of lightning."
+
+
+
+
+
+
+
+
+
+
+
+
