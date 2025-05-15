@@ -2,6 +2,8 @@ define lucy = Character("Lucy", color="#ffcccc")
 define karah = Character("Karah", color="#ff0000")
 define e = Character("Eitleen", color="ffcccc")
 
+label start:
+
 label example_game_dialog:
 
     "Karah" "Yo, I am the self-insert narrator of this game."
@@ -10,7 +12,6 @@ label example_game_dialog:
     "Karah" "That dawg thinks he is so \"smart\"."
 
     lucy "Hi, my name is Lucy!"
-    jump example_game_choices
 
 label example_game_images:
     scene bg town
@@ -64,7 +65,7 @@ label example_game_sounds:
     play music "audio/milky-chu_ohchootrain.ogg" fadeout 1
     karah "Here is some music."
     queue music "audio/sunflower-slow-drag.ogg"
-    karah "Queuing some sad music, you may have to wait a while for the old music to finish."
+    karah "Queuing some carnival music, you may have to wait a while for the old music to finish."
     stop music fadeout 1
     karah "Stopping the music."
     play sound "audio/tower_clock.ogg"
@@ -112,4 +113,4 @@ python:
 label name_display:
     define p = Character("[player_name]")
     e "Welcome [player_name]"
-    p "The last thing I remember was the flash of lightning"
+    p "The last thing I remeber was the flash of lightning"
