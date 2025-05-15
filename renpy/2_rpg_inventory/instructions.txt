@@ -1,0 +1,147 @@
+In this example, we will create a simple inventory system for holding party inventory.  The eventual intent
+of such a system would be to hold quest items and valuables.
+
+Step 1: Starting a new project
+
+This part is similar to Step 1 of the first ren'py project (visual novel).
+
+The Ren'py application also serves as its own IDE. Launch the application (if it has not
+already been downloaded for you, see the "Setup notes.pdf" file for more information on
+how to set up the application.  The Ren'py download comes with two built in projects,
+Tutorial and The Question.
+
+Exercise 1a: Create a new project.  Use 1280 x 720 dimensions. For editor, I recommend either
+using Atom or the System editor. Look at script.rpy to see an example of a Ren'py script.
+Select your new project and launch it, pressing Start to see the default script.
+
+As in the visual novel project, we will want to stage image files necessary for the inventory system.
+
+Exercise 1b: Copy all the images in the sample_images directory of this repo to the
+directory game/images
+
+We will start with some seed Ren'py files to get you started. All .py files in the game directory is loaded into
+your game project, and one of those files should have a "label start:" which will be the starting point.
+
+Exercise 1c: Copy script.py and inventory.py into the game/directory. The script.py file will overwrite the existing
+file in that directory.
+
+Exercise 1d: Copy the contents of in_game_screens.rpy and copy it into the in-game screens section of game/screens.rpy
+
+Exercise 1e: Launch the project to see the initial skeleton that we have created.
+
+Step 2: Creating and printing inventory items
+
+In the inventory.rpy file, we have an "init python" block.  These blocks are run as python code before the start
+of your project.  The file is seeded with three classes to get you started: InventoryItem, Inventory, and
+Consummable Item.  You can see an example of a partially implemeted class, Inventory.  This class has an
+__init__ method which is run every time an Inventory class is created, for example in line 8 of script.py with
+the line
+
+$ inventory = Inventory(e, [], 0)
+
+The $ symbol signals to renpy to run the line as a python script.  In this class, the character, item array,
+and item count are passed to the constructor.  It is common to save these parameters within the object itself,
+using the following lines to save the character, items, and item_count to the object itself
+
+self.items = items
+self.item_count = item_count
+self.character = character
+
+Exercise 2a: Save name and description to the InventoryItem object
+
+You can test out whether you saved it correctly by using renpy interpolation:
+$ var = inventory.item_count
+e "Item count: [var]"
+
+We can also define our own methods for classes.
+
+Exercise 2b: Define the look of an inventory object with both the name and the description. It should return the form
+"Name - Description", with a dash between the name and description.
+
+We can also as a convenience have the objects be callable using the __call__ special method.
+
+Exercise 2c: Hook __call__ to return the result of to_string()
+
+Classes can generate many different objects for that class.
+
+Exercise 2d: Define other objects and try printing them.  This is most easily done by creating a python variable
+with the value and then using the ren'py say command to print it out, similar to how we printed out the item
+count earlier.  In the example_solution version, we created a stack_of_money item as well, with the name
+"Stack of money" and the description "phat and juicy".
+
+Step 3: Keeping track of inventory items
+
+We will keep track of a character's items with the Inventory class we discussed earlier.  It has a character,
+a list of items, all of which should be InventoryItem objects, and a count of items.
+
+Exercise 3a: Note the inventory items added to the inventory object.  Make sure to add the chest key and whatever
+objects you created in Exercise 2d to the inventory object.
+
+Exercise 3b: Remove items from the inventory list.  You should do this in the remove_item method, by removing
+the item from the items list and decrementing the item count.
+
+Now we want to be able to print out the overall inventory.
+
+Exercise 3c: Print out an empty inventory.  This should be done by editing the say_items method to check that the
+item count is zero (or less than one). Ren'py provides a python function called say which you can use to have Ren'py
+have a character say a line, for instance, say(e, "I am saying something").  If there are no items in the inventory,
+you should have the character stored in the self object something like "I'm not carrying anything".
+
+Exercise 3d: Print out all the items of an inventory.  If there are any items, you should first have the character
+stored in the self object say "I'm currently carrying:" and then have the character say each item, using either the item
+as a function or using the to_string method.
+
+Exercise 3e(Bonus): Remove the item_count parameter and calculate an empty inventory by directly checking the
+items list.
+
+Step 4: Custom items
+
+We can create new classes using other classes as a base.  These new classes can inherit the methods of the
+original class.  For instance, in our example we have a ConsummableItem class, meant to represent potions and
+other one-shot items.  Since it inherits InventoryItem, it will automatically use the to_string and __call__
+methods.
+
+Exercise 4a: Initialize a consumable item.  Note that in our example, we have passed the name to the __init__
+method of the inherited class, InventoryItem.  We should have the description say something like
+"Consume to gain 24 hp and 10 mp" if hp_gain is 24 and mp_gain is 10.
+
+Let's test out our new object by adding it to the inventory object we created in inventory.rpy.
+
+Exercise 4b: Add a consummable item to the inventory. In the example solution, we created a Rejuvenation potion
+which healed 10 hp and mp.
+
+Exercise 4c: Create your own custom item.  Use the model in ConsummableItem to create your variant.  In the example
+solution, the LootItem class was created with a name and value.  The description for this class was
+"Worth 10 gold pieces" if the value was 10, and to test this out, a Quartz loot item with 5 value was created and
+added to the inventory object in script.rpy.
+
+Step 5: Screens
+
+Screens the way Ren'py creates visual displays and overlays for which to display images and graphics.  New projects
+in Ren'py come with a screens.rpy file which contains a default layout, and it comes with inbuilt say, input, and choice
+screens. There is always an in-game screens block that is created for your convenience to put custom screens.
+
+Screens are built in a way similar to webpages.  The style command is similar to html css, in that it establishes
+font and layout parameters for your text.
+
+Exercise 5a: Change the color and size of the font in the inventory_text style
+
+Screens are structured in a way similar to html blocks.  Screens with the modal True parameter are stand-alone
+screens that will overlay on top of the prior screens, while modal False screens do not block screens below,
+and are used to add an image to an existing screen.  Within the screen we can define visual elements like boxes
+(for example vbox) and buttons (for example imagebutton).
+
+The vbox screen element is used to place a block of text, and can be used to situate the text where you want.
+
+The imagebutton element places a clickable image on the screen.  The image is taken from the projects game/images
+directory, and can utilize the state of the relative position of the cursor over the image (such as hover or idle).
+You can set screen tool tips when the user hovers over the image, and can run Ren'py methods with the action button.
+The Show and Hide commands will show or hide particular screens.
+
+See https://www.renpy.org/doc/html/screens.html for more information about screens.
+
+Exercise 5b: Change the tool tip descriptions of the inventory button, both of the hud and the inventory screen.
+
+Exercise 5c: Rearrange the elements of the inventory
+
+Exercise 5d: Change the display of the inventory
