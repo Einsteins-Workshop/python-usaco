@@ -1,6 +1,11 @@
 import json
 import os
 import random
+def overwriteNewInput(question):
+    correctOutput = input(question)
+    userInputs[userInput] = correctOutput
+    with open(filePath, "w") as fileHandle:
+        json.dump(userInputs, fileHandle)
 print("CAT: Hello! I am CAT. CAT stands for Chat AI Thing. ")
 name=input("CAT: What is your name? \nYour name: ")
 folder="userCATdata"
@@ -36,13 +41,7 @@ while True:
         print("CAT: "+userInputs[userInput])
         if random.randint(0,100)<=5:
             if input("CAT: Was that right?(Y/N) ")=="N":
-                correctOutput = input("CAT: What would be appropriate to say here? \nAppropriate response: ")
-                userInputs[userInput] = correctOutput
-                with open(filePath, "w") as fileHandle:
-                    json.dump(userInputs, fileHandle)
+                overwriteNewInput("CAT: What would be appropriate to say here? \nAppropriate response: ")
     else:
-        correctOutput=input("CAT: I haven't heard that from you before! What would be appropriate to say here? \nAppropriate response: ")
-        userInputs[userInput]=correctOutput
-        with open(filePath,"w") as fileHandle:
-            json.dump(userInputs,fileHandle)
+        overwriteNewInput("CAT: I haven't heard that from you before! What would be appropriate to say here? \nAppropriate response: ")
     print(userVotes[userInput])
