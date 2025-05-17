@@ -1,3 +1,8 @@
+
+# All cat files happen to start with an upper case file
+def is_cat(x):
+    return x.name[0].isupper()
+
 if __name__ == '__main__':
     # fastai methods
     from fastbook import get_image_files
@@ -28,9 +33,7 @@ if __name__ == '__main__':
         if not(match) or (int(match.group(1)) > 20):
             file.unlink()
 
-    # All cat files happen to start with an upper case file
-    def is_cat(x):
-        return x.name[0].isupper()
+
 
     # Set up cat/dog model
     pet_data = DataBlock(
@@ -51,5 +54,4 @@ if __name__ == '__main__':
 
     # Save the model to a file
     learn.export('pet_model.pkl')
-
 

@@ -33,7 +33,7 @@ if __name__ == '__main__':
 
     # Create the training data set, which will consist of up to 200 images resulting from searches on forest and birds
     image_categories = ['grizzly', 'black', 'teddy']
-    path = Path('../bears')
+    path = Path('bears')
 
     # Remove images that are from broken links
     failed = verify_images(get_image_files(path))
@@ -51,23 +51,23 @@ if __name__ == '__main__':
     )
 
     # This is the standard resizer, which does a crop around the center
-    #bear_data.dataloaders(path).valid.show_batch(max_n=8, nrows=2)
-    #plt.show()
+    bear_data.dataloaders(path).valid.show_batch(max_n=8, nrows=2)
+    plt.show()
 
     # This is the squish resizer, which changes the dimensions of the image
-    #squishy_bear_data = bear_data.new(item_tfms=Resize(128, ResizeMethod.Squish))
-    #squishy_bear_data.dataloaders(path).train.show_batch(max_n=8, nrows=2)
-    #plt.show()
+    squishy_bear_data = bear_data.new(item_tfms=Resize(128, ResizeMethod.Squish))
+    squishy_bear_data.dataloaders(path).train.show_batch(max_n=8, nrows=2)
+    plt.show()
 
     # This is the pad resizer, which adds empty space to the image
-    #padded_bear_data = bear_data.new(item_tfms=Resize(128, ResizeMethod.Pad, pad_mode='zeros'))
-    #padded_bear_data.dataloaders(path).train.show_batch(max_n=8, nrows=2)
-    #plt.show()
+    padded_bear_data = bear_data.new(item_tfms=Resize(128, ResizeMethod.Pad, pad_mode='zeros'))
+    padded_bear_data.dataloaders(path).train.show_batch(max_n=8, nrows=2)
+    plt.show()
 
     # This is the pad resizer, which adds empty space to the image
-    #random_bear_data = bear_data.new(item_tfms=RandomResizedCrop(88, min_scale=0.5))
-    #random_bear_data.dataloaders(path).train.show_batch(max_n=8, nrows=2, unique=True)
-    #plt.show()
+    random_bear_data = bear_data.new(item_tfms=RandomResizedCrop(88, min_scale=0.5))
+    random_bear_data.dataloaders(path).train.show_batch(max_n=8, nrows=2, unique=True)
+    plt.show()
 
     augmented_bear_data = bear_data.new(
         item_tfms=RandomResizedCrop(128, min_scale=0.5),

@@ -1,46 +1,26 @@
-﻿# The script of the game goes in this file.
-
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
-
-define e = Character("Eileen")
-
-
-# The game starts here.
+﻿define e = Character("Eileen", color="ffcccc")
 
 label start:
 
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
-
+label example_inventory:
     scene bg whitehouse
-
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
-
     show eileen happy
+    $ inventory = Inventory(e, [], 0)
+    $ inventory.say_items()
 
-    # These display lines of dialogue.
+    define door_key = InventoryItem("Door key", "Try using it in a door.")
+    $ chest_key = InventoryItem("Chest key", "Try using it in a chest.")
 
-    e "You've created a new Ren'Py game."
+    e "I'm going to pick up these keys."
+    e "Now lets see what I'm carrying."
+    python:
+        inventory.add_item(door_key)
+        inventory.say_items()
 
-    e "Once you add a story, pictures, and music, you can release it to the world!"
+    e "Now I'm going to use up a key and get the loot."
 
-    hide eileen
+    e "Now let's display the inventory option"
+    show screen hud
+    e "Notice the backpack icon in the upper left of your screen"
 
-    show vaporeon:
-        yalign 0.5 xalign 0.5
-
-    "Vaporeon" "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-
-    show bup
-
-    'BUP' 'BUP'
-
-
-
-    # This ends the game.
-
-    return
+    e "Feel free to play with it."
