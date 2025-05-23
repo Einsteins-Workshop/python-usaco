@@ -1,0 +1,192 @@
+In this example, we will create an inventory management system for handling the equipment of characters with items
+from a shared pool.  The intent of such a system would be to allow for RPG style itemization of characters, with
+weapon and armor slots for characters.
+
+Step 1: Starting the project
+
+This part is very similar to step 1 of the second ren'py project (rpg_inventory)
+
+Exercise 1a: Create a new project.  Use 1280 x 720 dimensions. For editor, I recommend either
+using Atom or the System editor. Look at script.rpy to see an example of a Ren'py script.
+Select your new project and launch it, pressing Start to see the default script.
+
+As in the visual novel project, we will want to stage image files necessary for the inventory system.
+
+Exercise 1b: Copy all the images in the sample_images directory of this repo to the
+directory game/images
+
+We will start with some seed Ren'py files to get you started. All .py files in the game directory is loaded into
+your game project, and one of those files should have a "label start:" which will be the starting point.
+
+Exercise 1c: Copy script.py, inventory.py, and player.py into the game/directory. The script.py file will overwrite the
+existing file in that directory.
+
+Exercise 1d: Copy the contents of in_game_screens.rpy and copy it into the in-game screens section of game/screens.rpy
+
+Exercise 1e: Launch the project to see the initial skeleton that we have created.
+
+Step 2: Understanding the initial setup
+
+When you launch the project and continue one step, you'll get to a screen with a portrait icon in the upper left.
+Try clicking on the icon.
+
+When you do, you'll see a new character sheet screen with four sections.  From left to right, there are character stats,
+equipped items (with just a single weapon slot), the party inventory with a single item, and a current item selected
+section.
+
+Click on the axe in the party inventory. Note how it shows the battle axe in the current item section with its name
+and value, and gives you the options to equip or discard.  Try clicking on Equip.
+
+Note how it now appears in the equipped item list and disappears from the party inventory.  It also now has the
+unequip option as well.
+
+Look at script.rpy and note how it sets up the party inventory, adds items to it, and then sets up the character screen.
+Note that the PartyInventory, InventoryItem, Weapon, and Player classes are not defined here, and the characters screens
+is also defined in another file.
+
+Exercise 2a: Try modifying the script to add the longsword and the staff to the party inventory. Also, try to find the
+image files of the weapons in the images directory of your project.
+
+The PartyInventory, InventoryItem, and Weapon classes are defined in inventory.rpy.  The "init python" label in any
+.rpy file will be run at the very start of the project.  If you've done the 2_rpg_inventory project, you'll see
+a similar (but not exactly the same) inventory system here. There are two new elements here.
+
+First off, there is a set of classes, InventoryItem, StatItem, Equipable, and Weapon, that form an inheritance chain.
+The most general, InventoryItem, represents an item that can be in the inventory and is intended to be able to represent
+both quest items, loot items, and items with stats, like weapons and potions.
+
+The StatItem class is intended as a class for items that have gameplay implications, primarily through impacting game
+stats.
+
+The Equipable class is intended as a class for items that can be added to one of the character's equipment slots.
+
+The Weapon class is intended as a class for weapon items that will slot into the weapon slot and impact the character's
+atk stat.
+
+Exercise 2b: In script.rpy, remove the comment from the line in the python block,
+# inventory.say_items(e)
+Now run the project.  Note that the descriptions of all the stat items say TODO.  Change this so that they show
+the name and the stat value of the item.
+
+The Player class is defined in player.rpy.  Currently, players have hp, mp, and level stats and can equip a
+weapon, which is intended to be an item from the Weapon class. Note that there are a variety of class methods
+(add_hp, add_mp, equip_armor, and unequip_armor) that are left for you to implement later.
+
+Exercise 2c: Find the icons for the Chie character.  Try changing the hp and mp of the default character, and try
+changing the hp and mp of Chie.
+
+In screens.rpy, the section you copied contains screens for both the character portraits in the upper left and
+the full view character sheet screen.
+
+The character portrait screen has a single button that, when clicked, does three things: Sets the selected_character
+variable to chie (which is defined in script.rpy), shows the character sheet screen, and hides the character portrait
+screen.
+
+The character sheet screen contains a new background image, "a white_area.png".  It also has four panels in a
+horizontal array.  One contains the character's image and stats, one contains the equipped items, one has the
+full party inventory, and one has the selected item.
+
+The panel with the character stats currently has two stats, HP, and MP, with both the current and max of those
+stats displayed.
+
+Exercise 2d: Give another presentation of the HP stat, for instance have it say "3 out of 8" for mp.
+
+The panel with the equipped items shows a single weapon slot.  Note that it only shows the weapon image if the character
+has a weapon. When the character has a weapon, there is an Unequip button that performs the unequip method for the
+weapon, which you can find in inventory.rpy.
+
+The panel with the inventory items is in a 10 x 14 grid, with each one having either one of the party's displayable
+items or an empty slot.  Party items have an image which also serves as a button that, when clicked, sets the
+selected_item variable to that item.
+
+The panel with the selected item only shows an image when the selected_item variable has been set, which will only
+happen when the user clicks an inventory item.  Note that it shows the name, the item's image, and its value.  There
+are also two buttons, an equip and a discard button. The equip button will cause the weapon to be assigned to the
+character's weapon attribute.  The discard button will cause the weapon to be removed from the party inventory (in this
+case, permanently).
+
+Exercise 2e: Instead of showing the name and the value separately, show only the selected item's to_string value.
+
+Exercise 2f: Note that when the selected item is equiped or discarded, it remains as the selected item.  Add to the
+button action a command which sets the selected_item variable to None.
+
+There is also on the button of the screen a Return button that toggles the character portrait and character sheet
+screens.
+
+Exercise 2g: Try moving that button around by changing its xalign or yalign values.
+
+Exercise 2h: In the script.rpy, add the yu character as a variable and, in the characters screen, add another
+image button for the yu character.
+
+Step 3: Fix basic stats
+
+Currently, equiping a weapon does not modify a player's stats because the player does not have stats for attack and
+defense.  In this step, we will add both support to the python classes for these stats and change the displays of
+items to include
+
+Exercise 3a: Add the atk, defense, and mdef stats to the Player class, which will represent the attack power and
+the physical/magical defense power of the character.  These will be modifed later by the character's equipment. You'll
+also want to change, in script.rpy, the section where the player's are defined to include the base values for the new
+stats.
+
+Exercise 3b: In the character sheet screen, add atk, defense, and mdef to the character's list of displayed stats below
+HP and MP.
+
+Exercise 3c: Whenever a weapon is equipped to a player, increase the player's atk stat by the weapon's atk stat. (Hint
+look for the method triggered by equipping a weapon in player.rpy.
+
+Exercise 3d: Whenever a weapon is unequipped, decrease the player's atk stat by the weapon's atk stat.
+
+Step 4: Add armor slots
+
+Next we are going to implement armor slots.  Unlike the single weapon slot, we want to have four armor slots,
+associated with head, chest, acc (accessory) and shield.  For learning purposes, have a single dictionary for
+all armor slots is suggested, though you could define them separately (as different attributes) in your project.
+
+Step 4a: Define an Armor class in inventory.rpy.  It should inherit from the Equipable class and it should have the
+following attributes: name, img, value, defense, mdef, and slot.  It should also have an equip and unequip method
+similar to that of the Weapon class.
+
+Step 4b: In script.rpy, create and add the chainmail, copper_ring, gold_ring, horned_helmet, iron_buckler,
+kite_shield, leather_cap, and platemail items to the party inventory.  These should now display in party inventory
+and even be selectable, but the equip buttons will not yet work.
+
+Step 4c: Add four armor slots to the equipped items section of the character_sheet screen.  There should be a Helmet,
+Armor, Acessory, and Shield slot which should show an image if the head, chest, acc, or shield key of the player's
+armor attribute exists.  Make sure that there is also an Unequip button.  This should call an action similar to
+the weapon slot, but make sure to activate the appropriate armor slot's unequip method.
+
+Step 4d: To get the equip buttons working, make sure that the Armor's equip and unequip methods are defined correctly
+and implement the equip_armor and unequip_armor methods in the Player class. In the Armor's equip and unequip methods,
+make sure that both Equipable.equip is called and that the target's (which should be a Player object) equip_armor or
+unequip_armor methods are called, with both the slot and inventory parameter passed appropriately. In the Player's
+equip_armor and unequip_armor methods, make sure to assign and unassign the armor from the appropriate slot in the
+Player's armor attribute.
+
+Step 4e: Make sure that when armor is equipped, the defense and mdef increases appropriately.  Also, make sure that
+those stats are decreased when the armor is unequipped. Make sure to use the appropriate armor slot.
+
+Step 5: Add consummable items
+
+In this step, we will implement potions and other consummable items.  For now, these potions will be used to increase
+hp and mp.
+
+Step 5a: Implement the add_hp and add_mp methods in the Player class.  Make sure that you cannot heal above the max_hp
+and max_mp values!
+
+Step 5b: Create a new Consummable class which should inherit from StatItem.  (It should not inherit from Equipable).
+Make sure that it has the attributes name, img, value, hp_gain, and mp_gain.  In script.rpy, you should now be able
+to define and add the heal_potion, mana_potion, and rejuvenation_potion.
+
+Now you should be able to see potions in your inventory.  They are even selectable, but do not have an equip action
+available to it. (Do you know why?)
+
+Step 5c: Add a Use textbutton to the Current Item (selected item) panel if the selected_item is a Consummable object.
+Createa use method for the Consummable object (the use method should take as parameters a character and the inventory)
+and trigger the use method whenever the Use button is clicked.
+
+Step 5d: Implement the use method.  It should heal the target by its hp_gain value, increase the mp of the target by
+its mp_gain value, and it should be removed from inventory after use.
+
+Step 5e: Add multiple potions to the initial player inventory.  Try using the potions. Does all copies of the potion
+disappear, or just the one selected?
