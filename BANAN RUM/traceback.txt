@@ -1,48 +1,66 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-Compiling ATL code at game/script.rpy:34
-  File "game/script.rpy", line 33, in script
-    show vaporeon:
-  File "game/script.rpy", line 34, in <module>
-    y
-NameError: name 'y' is not defined
+While running game code:
+  File "game/script.rpy", line 24, in script
+    e "Notice the backpack icon in the upper left of your screen"
+  File "game/screens.rpy", line 87, in execute
+    screen hud():
+  File "game/screens.rpy", line 87, in execute
+    screen hud():
+  File "game/screens.rpy", line 90, in execute
+    imagebutton auto "bg hud inventory %s.png":
+Exception: Imagebutton does not have a idle image. (auto='bg hud inventory %s.png').
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 33, in script
-    show vaporeon:
-  File "S:\renpy-8.3.7-sdk\renpy\ast.py", line 1124, in execute
-    show_imspec(self.imspec, atl=getattr(self, "atl", None))
-  File "S:\renpy-8.3.7-sdk\renpy\ast.py", line 1087, in show_imspec
-    renpy.config.show(name,
-  File "S:\renpy-8.3.7-sdk\renpy\exports\displayexports.py", line 503, in show
-    sls.add(layer, img, key, zorder, behind, at_list=at_list, name=name, atl=atl, default_transform=default_transform, transient=transient)
-  File "S:\renpy-8.3.7-sdk\renpy\display\scenelists.py", line 477, in add
-    thing.visit_all(lambda d : None)
-  File "S:\renpy-8.3.7-sdk\renpy\display\displayable.py", line 424, in visit_all
-    for d in self.visit():
-  File "S:\renpy-8.3.7-sdk\renpy\atl.py", line 816, in visit
-    block = self.compile()
-  File "S:\renpy-8.3.7-sdk\renpy\atl.py", line 723, in compile
-    block = self.atl.compile(self.context)
-  File "S:\renpy-8.3.7-sdk\renpy\atl.py", line 925, in compile
-    statements = [ i.compile(ctx) for i in self.statements ]
-  File "S:\renpy-8.3.7-sdk\renpy\atl.py", line 925, in <listcomp>
-    statements = [ i.compile(ctx) for i in self.statements ]
-  File "S:\renpy-8.3.7-sdk\renpy\atl.py", line 1232, in compile
-    child = ctx.eval(expr)
-  File "S:\renpy-8.3.7-sdk\renpy\atl.py", line 387, in eval
-    return renpy.python.py_eval(expr, locals=self.context)
-  File "S:\renpy-8.3.7-sdk\renpy\python.py", line 1218, in py_eval
-    return py_eval_bytecode(code, globals, locals)
-  File "S:\renpy-8.3.7-sdk\renpy\python.py", line 1211, in py_eval_bytecode
-    return eval(bytecode, globals, locals)
-  File "game/script.rpy", line 34, in <module>
-    y
-NameError: name 'y' is not defined
+  File "game/script.rpy", line 24, in script
+    e "Notice the backpack icon in the upper left of your screen"
+  File "S:\renpy-8.3.7-sdk\renpy\ast.py", line 2586, in execute
+    Say.execute(self)
+  File "S:\renpy-8.3.7-sdk\renpy\ast.py", line 623, in execute
+    renpy.exports.say(who, what, *args, **kwargs)
+  File "S:\renpy-8.3.7-sdk\renpy\exports\sayexports.py", line 132, in say
+    who(what, *args, **kwargs)
+  File "S:\renpy-8.3.7-sdk\renpy\character.py", line 1471, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
+  File "S:\renpy-8.3.7-sdk\renpy\character.py", line 1117, in do_display
+    display_say(who,
+  File "S:\renpy-8.3.7-sdk\renpy\character.py", line 814, in display_say
+    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
+  File "S:\renpy-8.3.7-sdk\renpy\ui.py", line 301, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "S:\renpy-8.3.7-sdk\renpy\display\core.py", line 2218, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
+  File "S:\renpy-8.3.7-sdk\renpy\display\core.py", line 2748, in interact_core
+    root_widget.visit_all(lambda d : d.per_interact())
+  File "S:\renpy-8.3.7-sdk\renpy\display\displayable.py", line 434, in visit_all
+    d.visit_all(callback, seen)
+  File "S:\renpy-8.3.7-sdk\renpy\display\displayable.py", line 434, in visit_all
+    d.visit_all(callback, seen)
+  File "S:\renpy-8.3.7-sdk\renpy\display\displayable.py", line 434, in visit_all
+    d.visit_all(callback, seen)
+  File "S:\renpy-8.3.7-sdk\renpy\display\screen.py", line 480, in visit_all
+    callback(self)
+  File "S:\renpy-8.3.7-sdk\renpy\display\core.py", line 2748, in <lambda>
+    root_widget.visit_all(lambda d : d.per_interact())
+  File "S:\renpy-8.3.7-sdk\renpy\display\screen.py", line 491, in per_interact
+    self.update()
+  File "S:\renpy-8.3.7-sdk\renpy\display\screen.py", line 700, in update
+    self.screen.function(**self.scope)
+  File "game/screens.rpy", line 87, in execute
+    screen hud():
+  File "game/screens.rpy", line 87, in execute
+    screen hud():
+  File "game/screens.rpy", line 90, in execute
+    imagebutton auto "bg hud inventory %s.png":
+  File "S:\renpy-8.3.7-sdk\renpy\ui.py", line 975, in _imagebutton
+    idle = choice(idle, idle_image, "idle", required=True)
+  File "S:\renpy-8.3.7-sdk\renpy\ui.py", line 969, in choice
+    raise Exception("Imagebutton does not have a %s image. (auto=%r)." % (name, auto))
+Exception: Imagebutton does not have a idle image. (auto='bg hud inventory %s.png').
 
 Windows-10-10.0.22631 AMD64
 Ren'Py 8.3.7.25031702
 BANAN RUM 1.0
-Sat May  3 15:05:57 2025
+Sat May 17 15:18:00 2025
