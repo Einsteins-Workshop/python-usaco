@@ -135,7 +135,7 @@ screen character_sheet():
             label "Character Stats" xalign 0.5
             label "HP: [selected_character.hp]/[selected_character.max_hp]"
             label "MP: [selected_character.mp]/[selected_character.max_mp]"
-            label "ATT: [selected_character.att]"
+            label "ATK: [selected_character.atk]"
             label "DEF: [selected_character.deff]"
             label "MDEF: [selected_character.mdef]"
 
@@ -171,10 +171,14 @@ screen character_sheet():
                 frame:
                     style "slot"
                     add selected_item.img
-                label "Att: [selected_item.atk]"
                 if isinstance(selected_item, Equipable):
+                    label "Atk: [selected_item.atk]"
                     textbutton "Equip" action Function(selected_item.equip, selected_character, inventory), SetVariable("selected_item", None)
                 textbutton "Discard" action Function(inventory.remove_item, selected_item), SetVariable("selected_item", None)
+
+                if isinstance(selected_item, Consumable):
+                    label "Regen: [selected_item.regen]"
+                    textbutton "Consume" action Function(selected_item.consume, selected_character, inventory), SetVariable("selected_item", None)
 
     textbutton "Return":
         action Show("characters"), Hide("character_sheet")

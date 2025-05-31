@@ -10,8 +10,8 @@ label example_characters:
     $ inventory.say_items(e)
 
     define door_key = InventoryItem("Door key", "Try using it in a door.")
-    #$ heal_potion = Consummable("Healing potion", "inv/red potion.png", 10, 5, 0)
-    #$ mana_potion = Consummable("Mana potion", "inv/blue potion.png", 10, 0, 5)
+    $ heal_potion = Consumable("Healing potion", "inv/red potion.png", 10, 5, 0)
+    #$ mana_potion = Consumable("Mana potion", "inv/blue potion.png", 10, 0, 5)
     #$ rejuvenation_potion = Consummable("Rejuvenation potion", "inv/purple potion.png", 40, 20, 20)
     $ axe = Weapon("Battleaxe", "inv/battleaxe.png", 100, 4, "physical")
     #$ chainmail = Armor("Chainmail", "inv/chainmail_jacket.png", 200, 4, 1, "chest")
@@ -30,6 +30,7 @@ label example_characters:
     python:
         inventory.add_item(door_key)
         inventory.add_item(axe)
+        inventory.add_item(heal_potion)
         # inventory.say_items(e)
 
     $ chie = Player(7, 5, 5, 3, 2, "chie", 1)

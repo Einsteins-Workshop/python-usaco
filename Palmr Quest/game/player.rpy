@@ -1,12 +1,12 @@
 init python:
     class Player:
-        def __init__(self, hp, mp, att, deff, mdef,img_prefix, level = 1):
+        def __init__(self, hp, mp, atk, deff, mdef,img_prefix, level = 1):
             self.img_icon = f"{img_prefix} icon idle.png"
             self.hp = 1
             self.mp = 1
             self.max_hp = hp
             self.max_mp = mp
-            self.att = att
+            self.atk = atk
             self.deff = deff
             self.mdef = mdef
             self.level = level
@@ -14,7 +14,7 @@ init python:
             #self.armor = {"head": None, "chest": None, "acc": None, "shield": None}
 
         def add_hp(self, amount):
-            print("This has not yet been implemented")
+            self.hp += amount
 
         def add_mp(self, amount):
             print("This has not yet been implemented")
@@ -24,11 +24,11 @@ init python:
                 self.unequip_weapon(inventory)
             self.weapon = weapon
             inventory.remove_item(weapon)
-            self.att += weapon.atk
+            self.atk += weapon.atk
 
         def unequip_weapon(self, inventory):
             inventory.add_item(self.weapon)
-            self.att -= self.weapon.atk
+            self.atk -= self.weapon.atk
             self.weapon = None
 
         def equip_armor(self, armor, slot, inventory):

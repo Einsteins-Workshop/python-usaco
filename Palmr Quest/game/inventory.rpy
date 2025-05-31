@@ -48,6 +48,17 @@ init python:
                 for item in self.items:
                     say(character, item())
 
+    class Consumable(StatItem):
+        def __init__(self, name, img, value, regen, regain):
+            StatItem.__init__(self, name, img, value)
+            self.regen = regen
+            self.regain = regain
+
+        def consume(self, target, inventory):
+            target.add_hp(self.regen)
+            inventory.remove_item(self)
+
+
     class Equipable(StatItem):
         def __init__(self, name, img, value):
             StatItem.__init__(self, name, img, value)

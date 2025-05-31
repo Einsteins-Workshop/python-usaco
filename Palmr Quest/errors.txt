@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/screens.rpy", line 179: vbox expects a non-empty block.
+    if is isinstance(selected_item, Consumable):
+                                                ^
+
+Ren'Py Version: Ren'Py 8.3.7.25031702
+Sat May 31 15:11:38 2025
