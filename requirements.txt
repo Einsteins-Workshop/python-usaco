@@ -1,0 +1,6 @@
+flask~=3.1.1
+rich~=13.9.4
+gradio~=4.44.1
+fastai~=2.7.18
+fastbook~=0.0.29
+pillow~=10.4.0
