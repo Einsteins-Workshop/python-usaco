@@ -1,0 +1,77 @@
+Part of planning a large project such as a rpg game is to breakdown the project into digestible
+steps.  You want to start by breaking out a project first into large and vague steps, and
+progressively break each of these steps into substeps until you end up with a project that
+you can start working on, one small step at a time.
+
+We want to create a combat system featuring two player controlled characters fighting up to four enemies in a turn based system where the player takes turns making moves with their non-KO'd characters, followed by the monsters taking their turns.
+How can we break this up into individual steps?
+
+What sort of data do we need to run the combat, and what sort of objects should they involve?
+
+What variables do we need to keep track off to handle the flow of the combat between steps?
+
+What display elements will we need to display to the player to make sense of the game?
+
+Try to do this exercise on your own.  There can be many ways to get to an answer.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+In this project we will do the following steps:
+0. (Switch off renpy visual novel elements)
+1. Setup battlefield
+   a. Setup monsters
+   b. Setup players
+   c. Clear player turns
+2. Perform player actions
+   a. Choose active player or end player turn
+   b. Choose action (defend/attack/magic)
+   c. Choose target
+   d. Perform attack/defend
+   e. Check for end of player turn or end of combat
+3. Perform monster actions, for each monster
+   a. Choose active player to attack
+   b. Perform attack
+   c. Check for end of combat
+4. Show end screen
+
+Data we will need:
+Players
+   Name, hp, mp, atk, defense, image, magic skill
+Monsters
+   Name, img, hp, atk, (animation)
+Magic Skill
+   Mp, description, aoe (boolean)
+
+Tracking parameters
+
+Monsters
+Players
+Message-- for message overlay
+inCombat-- Boolean
+Win-- Boolean
+Player.turn-- Boolean
+Player.defending -- Boolean
+current_player -- Tracking who the player selected to act, or done
+Skill -- Tracking which player option (attack/defend/magic) is chosen
+
+
+

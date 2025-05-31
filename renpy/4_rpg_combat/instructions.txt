@@ -1,0 +1,202 @@
+In this example, we will create an inventory management system for handling the equipment of characters with items
+from a shared pool.  The intent of such a system would be to allow for RPG style itemization of characters, with
+weapon and armor slots for characters.
+
+Step 1: Starting the project
+
+This part is very similar to step 1 of the second ren'py project (rpg_inventory)
+
+Exercise 1a: Create a new project.  Use 1280 x 720 dimensions. For editor, I recommend either
+using Atom or the System editor. Look at script.rpy to see an example of a Ren'py script.
+Select your new project and launch it, pressing Start to see the default script.
+
+As in the visual novel project, we will want to stage image files necessary for the inventory system.
+
+Exercise 1b: Copy all the images in the sample_images directory of this repo to the
+directory game/images
+
+We will start with some seed Ren'py files to get you started. All .py files in the game directory is loaded into
+your game project, and one of those files should have a "label start:" which will be the starting point.
+
+Exercise 1c: Copy script.py, inventory.py, monsters.rpy, battle.rpy, and player.py into the game/directory. The
+script.py file will overwrite the existing file in that directory.
+
+Exercise 1d: Copy the contents of in_game_screens.rpy and copy it into the in-game screens section of game/screens.rpy
+
+Exercise 1e: Copy the contents of gui/ to the game/gui subdirectory.
+
+Exercise 1f: Launch the project to see the initial skeleton that we have created.
+
+Step 2: Plan out the project.
+
+Exercise 2: Read planning.txt. Try to come up with your own breakdown for this project.
+
+Step 3: Set up the battlefield
+
+To start with, we want to use a background for the battlefield and show the screen that we use
+to display messages to the player. The battle_message screen is the one that we will use for this.
+Note that the message displayed depends on the <b>message</b> variable, which can be set anywhere
+in the program to change the message in that screen.
+
+Exercise 3a: Choose a background to use for the battlefield. The battle1, battle2, and battle3 pngs can be used
+
+Exercise 3b: Call the battle_message screen.
+
+Exercise 3b: Set a default for that message in your code.
+
+Step 4: Set up and display monsters
+
+Reading through monsters.rpy, we can see the creation of the class Monster, which creates both stats, images, and
+animations for monsters. It also creates a global monster_manual object which, after the load_monster_manual is called,
+consists a library of monsters that you can use. Note that if only creates one monster per slot, so if you want to reuse
+a monster, you will want to use copy.deepcopy to create a duplicate of the monster.
+
+There is also a display_monsters_with_no_targeting screen that will display monsters, assuming you create a list of up
+to four monsters in the monster variable, and slot positions object in a monster_slot_positions object. It should be a
+list of four map dictionaries. Here is an example to get you started-- feel free to adjust the sprite_positions for
+your game.
+        monster_slot_positions = [
+            {
+                "sprite_position": 0,
+                "dmg_position": (576, 320)
+            },
+            {
+                "sprite_position": 100,
+                "dmg_position": (832, 320)
+            },
+            {
+                "sprite_position": 0,
+                "dmg_position": (576, 320)
+            },
+            {
+                "sprite_position": 300,
+                "dmg_position": (832, 320)
+            }
+        ]
+
+Step 4a: Create a new label called setup_monsters that stages and displays the monsters. Make sure
+that after it is done, it ends in a "return" command to go back to the calling label.
+
+Step 4b: Within the new label, call the load_monster_manual to label in monsters.rpy.
+
+Step 4c: Within a python label, create a monsters array consisting of lapras, ditto, eevee, and vaporeon from
+the monster manual dictionary.  Use the above monster_slot_positions for your monster_slot_positions list.
+
+Step 4d: Make sure that you call your setup_monsters label in you start label.  Also, show the
+display_monsters_with_no_targeting screen with dissolve. You should now be able to see the monsters that you
+created.
+
+Step 5: Set up and display players
+
+Now we want to create player characters. For them, we'll want to keep track of max_hp, hp, max_mp, mp, atk, defense,
+level and skill. All but skill should be numbers, and should have already been defined as part of our inventory project.
+Skill will be an object that we'll want to create. We'll also need an img_prefix attribute as well, which represent
+image files. The "chie" and "yu" characters are ready for you to use.
+
+To create a skill class, we should include mp (representing the cost), description, and aoe (which should be a boolean
+ value).
+
+We have ready for us a battle_overlay screen, which requires a player object and a player_slot_positions object. The
+player_slot_positions will look like:
+        player_slot_positions = [
+            {
+                "img_pos": 0,
+                "bar_pos": 150,
+                "dmg_pos": 250
+            },
+            {
+                "img_pos": 300,
+                "bar_pos": 500,
+                "dmg_pos": 600
+            }
+        ]
+
+Step 5a: Create a PlayerCharacter class, inheriting from the Player Class. It can be placed in the player.rpy file.
+It can use its parent class, Player.rpy, for the part of __init__ that includes hp, mp, atk, defense, mdef, img_prefix,
+and level.
+
+Step 5b: In the initialization of PlayerCharacter, also add an attribute for hp and mp which should be
+the max hp and max mp for that character (note that in the Player example from earlier, those were set by default to 1).
+
+Step 5c: In the initialization of PlayerCharacter, also add an attribute for img_battle.  It should be of the form
+"[player name] battle.webp". You can see these images in the images directory for chie and yu.
+
+Step 5d: In the initialization of PlayerCharacter, also add a name, which should probably just a capitalized version of
+the img_prefix.
+
+Step 5e: Create a MagicSkill class.  It should have an mp, damage_type, description, and aoe (default to False)
+attributes that are saved to the object on initialization.
+
+Step 5f: Create an enumeration class (in python) for damage type:
+    class DamageType(Enum):
+        ACID = 1
+        FIRE = 2
+Put it in an init python label.  I suggest a new file such as battle.rpy to put all this battle
+specific logic.
+
+Step 5g: Create a label called setup_players.  In it, run the following python and return:
+
+water_bolt = MagicSkill(1, DamageType.ACID, "Water bolt")
+        fire_ball = MagicSkill(2, DamageType.FIRE, "Fire ball", aoe = True)
+        chie = PlayerCharacter(110, 5, 6, 3, 2, "chie", water_bolt, 1)
+        yu = PlayerCharacter(102, 4, 4, 5, 5, "yu", fire_ball, 1)
+        players = [chie, yu]
+        player_slot_positions = [
+            {
+                "img_pos": 0,
+                "bar_pos": 150,
+                "dmg_pos": 250
+            },
+            {
+                "img_pos": 300,
+                "bar_pos": 500,
+                "dmg_pos": 600
+            }
+        ]
+
+
+Step 5h: Call the new setup_players label you just created.
+
+Step 5i: Show the battle_overlay screen.  You should now be able to see your player characters.
+
+Step 6: Start battle loop and choose a player
+
+Step 7: Choose a player action
+
+Step 8: Choose a target to attack
+
+Step 9: Resolve damage
+
+Step 10: End of player turn, including player win check
+
+Step 11: Monster turn
+
+Step 12: Check for Monster win
+
+Renpy RPG resouces:
+You should now have an example RPG battle system in Renpy. You can add additional features, such as integrating an inventory system such as in the example provided in the example_bundle.zip. You can also add more features such as more types of skills, and fix issues such as making magic skills not show up if the character has no more mp.
+There are many Ren'py source online, including many Ren'py Youtube videos. Here is a list of resources for further exploration.
+Overworld map :
+https://inkarnate.com/
+
+Sound and music editing: https://www.bandlab.com/products/cake...
+
+game assets:
+https://itch.io
+
+story ideas:
+https://openai.com/blog/chatgpt/
+
+Renpy beginner to advanced
+https://www.youtube.com/playlist?list=PLKdE0Vv4UA5-dqJLpDkPt5CLQzc6hJ-uh
+
+map exploration and movement
+https://www.youtube.com/watch?v=ZYdBq4veSEs
+Playlist
+https://www.youtube.com/playlist?list=PLJgbnTkC4bkCj2_8ZUg1o4CafLcRH0rAX
+
+basic rpg framework
+https://github.com/VimislikArt/rpg_fight/blob/main/rpg_fight.rpy
+
+Existing battle engine system:
+https://github.com/Habitacle/battle-engine
