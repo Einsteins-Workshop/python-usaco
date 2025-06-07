@@ -1,0 +1,40 @@
+Here are steps for getting your flask project on a website hosted by Azure
+
+These instructions were prepared using Microsoft's documentation at
+https://learn.microsoft.com/en-us/azure/app-service/quickstart-python
+
+Step 1. Log in to GitHub and create a new project.  Copy your project over to it.  Make sure that
+you have a requirements.txt file, and that you have a line such as the one below in it, to show that
+flask is required to run the project.
+
+flask~=3.1.1
+
+Assuming that you have already installed flask (pip install flask), test your server locally.
+
+Step 2. Go to https://azure.microsoft.com/ and create a new account.  You can create a free account
+for one month that has $200 worth of credit.  There are many free services that, as long as your usage
+is low enough, will not charge, and are often sufficient for hobbyist purposes.
+
+Step 3. In the Azure portal, go to the Quickstart Center.  In the left menu, select Create->Popular services
+and, in the main menu, click Start for the Create Web App (for now without Database).
+
+Step 4. In the Project Details section in the Create Web App, click on the Create new button beneath
+the Subscription/Resource Group form. You should see your subscription already filled out. You can put
+any name for the resource group, such as webapp.
+
+Step 5. In the Instance Details section, enter a name for the website (which will be separate from all
+other Azure hosted website, choose Code for Publish, choose Python 3.13 for Runtime stack, and select Canada East
+ for region.
+
+Step 6. Under pricing plans, choose a pricing plan. There is a Free F1 plan, and a Basic B1 plan, which
+will have better performance at the cost of about 13 dollars per month. After completing steps 3-6, click
+Review + create, and then Create after navigating to the review screen. Note that the free plan gives
+one hour of up time per day.
+
+Step 7. Select Deployment -> Deployment Center and choose as your source GitHub. In the GitHub section,
+sign in to your github account, select the repository that you saved your webapp to and Save.
+
+Step 8 Navigate to your site.  The default domain will be in the domains section of the Overview.  You
+may need to wait for a bit upon your initial navigation to the website.
+
+For an example, see https://ew-sample-website-h8e7chdkgfa5hgaq.canadaeast-01.azurewebsites.net
