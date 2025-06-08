@@ -12,8 +12,8 @@
         .fixed-panel {
             min-height: 400px;
             max-height: 400px;
-            background-color: #19313c;
-            color: white;
+            background-color: #3c1931;
+            color: #ffeeee;
             overflow: auto;
         }
 
@@ -29,7 +29,7 @@
 
         .panel {
             margin-bottom: 20px;
-            background-color: #fff;
+            background-color: #ffffff;
             border: 6px solid transparent;
             border-radius: 25px;
             -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
@@ -37,33 +37,33 @@
         }
 
         .panel-info {
-            border-color: #0c2735;
+            border-color: #350c27;
         }
 
         .panel-info>.panel-heading {
-            color: white;
-            background-color: #0c2735;
-            border-color: #0c2735;
+            color: #ffeeee;
+            background-color: #350c27;
+            border-color: #350c27;
         }
 
         .panel-footer {
             padding: 10px 15px;
-            background-color: #0c2735;
-            border-top: 1px solid #0c2735;
+            background-color: #350c27;
+            border-top: 1px solid #350c27;
             border-bottom-right-radius: 3px;
             border-bottom-left-radius: 3px
         }
 
         body {
-            background: rgb(96, 143, 149);
+            background: rgb(149, 96, 143);
             /* Old browsers */
-            background: -moz-linear-gradient(-45deg, rgba(96, 143, 149, 1) 0%, rgba(0, 133, 136, 1) 9%, rgba(12, 36, 73, 1) 52%, rgba(26, 30, 59, 1) 100%);
+            background: -moz-linear-gradient(-45deg, rgba(149, 96, 143, 1) 0%, rgba(136, 0, 133, 1) 9%, rgba(73, 12, 36, 1) 52%, rgba(59, 26, 30, 1) 100%);
             /* FF3.6-15 */
-            background: -webkit-linear-gradient(-45deg, rgba(96, 143, 149, 1) 0%, rgba(0, 133, 136, 1) 9%, rgba(12, 36, 73, 1) 52%, rgba(26, 30, 59, 1) 100%);
+            background: -webkit-linear-gradient(-45deg, rgba(149, 96, 143, 1) 0%, rgba(136, 0, 133, 1) 9%, rgba(73, 12, 36, 1) 52%, rgba(59, 26, 30, 1) 100%);
             /* Chrome10-25,Safari5.1-6 */
-            background: linear-gradient(135deg, rgba(96, 143, 149, 1) 0%, rgba(0, 133, 136, 1) 9%, rgba(12, 36, 73, 1) 52%, rgba(26, 30, 59, 1) 100%);
+            background: linear-gradient(135deg, rgba(149, 96, 143, 1) 0%, rgba(136, 0, 133, 1) 9%, rgba(73, 12, 36, 1) 52%, rgba(59, 26, 30, 1) 100%);
             /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#608f95', endColorstr='#1a1e3b', GradientType=1);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#95608f', endColorstr='#3b1a1e', GradientType=1);
             /* IE6-9 fallback on horizontal gradient */
         }
     </style>
@@ -72,14 +72,14 @@
 <body>
     <div class="container background-color: rgb(255,0,255);">
         <div class="row">
-            <h3 class="text-center"><small><strong>My</strong></small>
-                <font color="white"> Chatbot!!! </font>
+            <h3 class="text-center">
+                <font color="#ffeeee"> Talk to C.A.T.(Chat AI Thing) </font>
             </h3>
 
             <div class="col-md-4 col-md-offset-4">
                 <div id="chatPanel" class="panel panel-info">
                     <div class="panel-heading">
-                        <strong><span class="glyphicon glyphicon-globe"></span> Talk with Me !!! (You: Green / Bot:
+                        <strong><span class="glyphicon glyphicon-globe"></span> Talk with Me !!! (You: Red / Bot:
                             White) </strong>
                     </div>
                     <div class="panel-body fixed-panel">
@@ -92,8 +92,8 @@
                                 <input type="text" class="form-control" placeholder="Enter Message" name="messageText"
                                     id="messageText" autofocus />
                                 <span class="input-group-btn">
-                                    <button class="btn btn-info" type="button" id="chatbot-form-btn">Send</button>
-                                    <button class="btn btn-info" type="button"
+                                    <button class="btn btn-danger" type="button" id="chatbot-form-btn">Send</button>
+                                    <button class="btn btn-danger" type="button"
                                         id="chatbot-form-btn-clear">Clear</button>
                                 </span>
                             </div>
@@ -111,8 +111,8 @@
 
         $(".media-list").append(
             '<li class="media"><div class="media-body">' +
-            '<div class="media"><div style = "color : white" class="media-body">' +
-            'What is your name?' +
+            '<div class="media"><div style = "color : #ffeeee" class="media-body">' +
+            "What's your name?" +
             '<hr/></div></div></div></li>'
         );
 
@@ -139,7 +139,7 @@
                 e.preventDefault();
                 var message = $('#messageText').val();
                 $(".media-list").append(
-                    '<li class="media"><div class="media-body"><div class="media"><div style = "text-align:right; color : #2EFE2E" class="media-body">' +
+                    '<li class="media"><div class="media-body"><div class="media"><div style = "text-align:right; color : #FE2E2E" class="media-body">' +
                     message + '<hr/></div></div></div></li>');
 
                 $.ajax({
@@ -153,7 +153,7 @@
 
                         /* Add text */
                         $(".media-list").append(
-                            '<li class="media"><div class="media-body"><div class="media"><div style = "color : white" class="media-body">' +
+                            '<li class="media"><div class="media-body"><div class="media"><div style = "color : ffeeee" class="media-body">' +
                             answer + '<hr/></div></div></div></li>');
 
                         /* Scroll down to bottom */
