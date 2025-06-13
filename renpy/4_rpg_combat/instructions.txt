@@ -1,0 +1,416 @@
+In this example, we will create an inventory management system for handling the equipment of characters with items
+from a shared pool.  The intent of such a system would be to allow for RPG style itemization of characters, with
+weapon and armor slots for characters.
+
+Step 1: Starting the project
+
+This part is very similar to step 1 of the second ren'py project (rpg_inventory)
+
+Exercise 1a: Create a new project.  Use 1280 x 720 dimensions. For editor, I recommend either
+using Atom or the System editor. Look at script.rpy to see an example of a Ren'py script.
+Select your new project and launch it, pressing Start to see the default script.
+
+As in the visual novel project, we will want to stage image files necessary for the inventory system.
+
+Exercise 1b: Copy all the images in the sample_images directory of this repo to the
+directory game/images
+
+We will start with some seed Ren'py files to get you started. All .py files in the game directory is loaded into
+your game project, and one of those files should have a "label start:" which will be the starting point.
+
+Exercise 1c: Copy script.py, inventory.py, monsters.rpy, battle.rpy, and player.py into the game/directory. The
+script.py file will overwrite the existing file in that directory.
+
+Exercise 1d: Copy the contents of in_game_screens.rpy and copy it into the in-game screens section of game/screens.rpy
+
+Exercise 1e: Copy the contents of gui/ to the game/gui subdirectory.
+
+Exercise 1f: Launch the project to see the initial skeleton that we have created.
+
+Step 2: Plan out the project.
+
+Exercise 2: Read planning.txt. Try to come up with your own breakdown for this project.
+
+Step 3: Set up the battlefield
+
+To start with, we want to use a background for the battlefield and show the screen that we use
+to display messages to the player. The battle_message screen is the one that we will use for this.
+Note that the message displayed depends on the <b>message</b> variable, which can be set anywhere
+in the program to change the message in that screen.
+
+Exercise 3a: Choose a background to use for the battlefield. The battle1, battle2, and battle3 pngs can be used
+
+Exercise 3b: Call the battle_message screen.
+
+Exercise 3b: Set a default for that message in your code.
+
+Step 4: Set up and display monsters
+
+Reading through monsters.rpy, we can see the creation of the class Monster, which creates both stats, images, and
+animations for monsters. It also creates a global monster_manual object which, after the load_monster_manual is called,
+consists a library of monsters that you can use. Note that if only creates one monster per slot, so if you want to reuse
+a monster, you will want to use copy.deepcopy to create a duplicate of the monster.
+
+There is also a display_monsters_with_no_targeting screen that will display monsters, assuming you create a list of up
+to four monsters in the monster variable, and slot positions object in a monster_slot_positions object. It should be a
+list of four map dictionaries. Here is an example to get you started-- feel free to adjust the sprite_positions for
+your game.
+        monster_slot_positions = [
+            {
+                "sprite_position": 0,
+                "dmg_position": (576, 320)
+            },
+            {
+                "sprite_position": 100,
+                "dmg_position": (832, 320)
+            },
+            {
+                "sprite_position": 0,
+                "dmg_position": (576, 320)
+            },
+            {
+                "sprite_position": 300,
+                "dmg_position": (832, 320)
+            }
+        ]
+
+Step 4a: Create a new label called setup_monsters that stages and displays the monsters. Make sure
+that after it is done, it ends in a "return" command to go back to the calling label.
+
+Step 4b: Within the new label, call the load_monster_manual to label in monsters.rpy.
+
+Step 4c: Within a python label, create a monsters array consisting of lapras, ditto, eevee, and vaporeon from
+the monster manual dictionary.  Use the above monster_slot_positions for your monster_slot_positions list.
+
+Step 4d: Make sure that you call your setup_monsters label in you start label.  Also, show the
+display_monsters_with_no_targeting screen with dissolve. You should now be able to see the monsters that you
+created.
+
+Step 5: Set up and display players
+
+Now we want to create player characters. For them, we'll want to keep track of max_hp, hp, max_mp, mp, atk, defense,
+level and skill. All but skill should be numbers, and should have already been defined as part of our inventory project.
+Skill will be an object that we'll want to create. We'll also need an img_prefix attribute as well, which represent
+image files. The "chie" and "yu" characters are ready for you to use.
+
+To create a skill class, we should include mp (representing the cost), description, and aoe (which should be a boolean
+ value).
+
+We have ready for us a battle_overlay screen, which requires a player object and a player_slot_positions object. The
+player_slot_positions will look like:
+        player_slot_positions = [
+            {
+                "img_pos": 0,
+                "bar_pos": 150,
+                "dmg_pos": 250
+            },
+            {
+                "img_pos": 300,
+                "bar_pos": 500,
+                "dmg_pos": 600
+            }
+        ]
+
+Step 5a: Create a PlayerCharacter class, inheriting from the Player Class. It can be placed in the player.rpy file.
+It can use its parent class, Player.rpy, for the part of __init__ that includes hp, mp, atk, defense, mdef, img_prefix,
+and level.
+
+Step 5b: In the initialization of PlayerCharacter, also add an attribute for hp and mp which should be
+the max hp and max mp for that character (note that in the Player example from earlier, those were set by default to 1).
+
+Step 5c: In the initialization of PlayerCharacter, also add an attribute for img_battle.  It should be of the form
+"[player name] battle.webp". You can see these images in the images directory for chie and yu.
+
+Step 5d: In the initialization of PlayerCharacter, also add a name, which should probably just a capitalized version of
+the img_prefix.
+
+Step 5e: Create a MagicSkill class.  It should have an mp, damage_type, description, and aoe (default to False)
+attributes that are saved to the object on initialization.
+
+Step 5f: Create an enumeration class (in python) for damage type:
+    class DamageType(Enum):
+        ACID = 1
+        FIRE = 2
+Put it in an init python label.  I suggest a new file such as battle.rpy to put all this battle
+specific logic.
+
+Step 5g: Create a label called setup_players.  In it, run the following python and return:
+
+water_bolt = MagicSkill(1, DamageType.ACID, "Water bolt")
+        fire_ball = MagicSkill(2, DamageType.FIRE, "Fire ball", aoe = True)
+        chie = PlayerCharacter(110, 5, 6, 3, 2, "chie", water_bolt, 1)
+        yu = PlayerCharacter(102, 4, 4, 5, 5, "yu", fire_ball, 1)
+        players = [chie, yu]
+        player_slot_positions = [
+            {
+                "img_pos": 0,
+                "bar_pos": 150,
+                "dmg_pos": 250
+            },
+            {
+                "img_pos": 300,
+                "bar_pos": 500,
+                "dmg_pos": 600
+            }
+        ]
+
+
+Step 5h: Call the new setup_players label you just created inthe start label.
+
+Step 5i: Show the battle_overlay screen.  You should now be able to see your player characters.
+
+Step 6: Start battle loop and choose a player
+
+Next we want to create the battle loop. We want to alternate between player turns and monster turns, and
+stop when the combat ends (with one side having nobody with positive hp).  For now, we will not implement a
+check for when to end combat, but for future possibilities we will devine a variable that could
+stop the loop when we later complete the end of combat checks.
+
+We will ask the player to choose a character using the turn_select screen. The screen will either return
+a character using the _return system variable (a Ren'py convention) that we can then use later, or "done"
+to indicate that the player turns are done.
+
+We will want to use the PlayerCharacter.turn attribute to keep track of when characters have already taken
+their turn.  The turn selection should keep looping until "done" is selected, and we will want to make sure
+that the PlayerCharacter.turn attribute is cleared (set to false) before the start of the players' selection
+loop.
+
+Step 6a: Before we start work on the battle loop, we should first change the game out of many of the
+Ren'py features that work for narrative gameplay but not for combat gameplay.  After the part of the
+start label where the battle_overlay screen is loaded, run the python function (defined in battle.rpy)
+stop_narrative_mode().
+
+Step 6b: Create the turn_actions label.  To start with, it should change the message variable to a prompt
+to the player to select a player, and then it should call the turn_select screen.
+
+Ren'py allows you to define variables or constants that are loaded before the script starts for variables
+that interact with Ren'py.  Generally speaking you should use these type of variables for functionality
+that can be called upon throughout your script.  The define keyword is used to define constant values,
+and default keyword is used for variables that can change. Below are some sample Ren'py statments.
+
+define pi = 3.14
+default current_score = 0
+
+See the article https://feniksdev.com/the-definitive-default-define-renpy-article/ for more information.
+
+Step 6c: Define, using Ren'py's default statement, the inCombat and win variables. Set inCombat to True
+and win to False to begin with.
+
+Step 6d: Create a while loop that continues to loop as long as inCombat is true. Within the loop, call
+the turn_actions label.  This is a good time to test your code to see if it successfully calls the
+turn_actions label you worked on earlier.
+
+Step 6e: As the first part of the while loop, create a python: label and, for all player in the players
+list, set player.turn = False.
+
+Ren'py screens can, as an action, call a special function called Return.  This will deactivate the screen,
+returning the program back to the script that called the screen.  In addition a special variable called
+_return will have the value of the function.
+
+Step 6f: After the call to the turn_select screen, save the value in _return to a variable such as
+current_player. If the current_player is done, set the current_player variable to None (to unset it),
+change the message to the "Monsters are attacking", and return from the label.
+
+Step 6g: If the current_player variable is a player (not equal to done), set the turn attribute for
+the current player to True.  The next step, choosing the player action, will be covered in the next
+step.  For the time being, print out a message that the current player will attack and jump to
+the turn_actions label again to choose the next player.
+
+Step 7: Choose a player action
+
+After a player character is selected, the player will need to choose an action. The player_skill screen
+that we have already copied to screens.rpy gives a user a choice between attack, defend, or a magic skill.
+Again, the choice that is made by the user will be stored in the _return variable and will be one of
+"attack", "defend", or a skill object. For this step, we will handle call the screen, get the action
+chosen, and separate out the choices into the correct labels. We will flesh out the resolution of the
+actions in a later step.
+
+Step 7a: Create a new label for choosing player_skill, and call the choose_skill screen (which you can
+find in the custom section of screens.rpy). Store the return value in the _return special variable to
+a new variable, e.g. skill.
+
+Step 7b: Instead of printing out a message that the current player will attack (that we did in Step 6g),
+call the player_skill label.
+
+Step 7c: Check (most easily with an if statement) what the value of skill is.  If it is attack, put
+in a placeholder message of "Choosing an attack" for now.  If it is defend, set the defending attribute
+for the current player to True.  Otherwise, put in a placeholder message of "Choosing a Magic skill" for
+now.
+
+Step 8: Choose a target to attack
+
+If the player chose an attack or a non-aoe magic skill, we will ask the player to select a target by
+clicking on the image of one of the monsters.  We will use the select_monster screen for this.  When
+pick_target is set to True, this screen will be primed so that if any of the monster images are selected,
+it will set _return to the selected monster.
+
+Step 8a: Create a new label named choose_target and have it call the select_monster screen. Also,
+set pick_target to True, to prime the screen for interaction.
+
+Step 8b: Instead of printing out the attack message in Step 7c, call the choose_target label. As a note
+to ourselves for later, add a comment that we should next damage a target.
+
+Step 8c: After the call to the select_monster screen, save the value in _return to a variable, such
+as target.  Remember afterwards to set pick_target to False and return to the calling label.
+
+Step 8d: Instead of printing out the magic skill message in step 7c, check to see if the skill chosen
+(which should be a MagicSkill object) has an aoe attribute set to False.  If so, call choose_target.
+To be extra careful, you can check to see if the skill is actually a MagicSkill object using the
+isinstance function:
+
+$ isSkill = isinance(skill, MagicSkill)
+
+Step 9: Resolve damage
+
+Next we want to resolve player damage after either an attack or magic skill is used.  We will use the
+player's atk stat to reduce the hp of the monsters.
+
+As a matter of good programming practice, we will want to create a function that does the work of
+damaging monsters.  That way, we can call this function at all of the places where monster damage happen
+and make sure that the same procedure is followed each time.  This function should have two arguments:
+the monster and the amount of damage.  It should reduce the monster's hp accordingly, being careful
+to reduce the hp to 0 if the damage is larger than hp (rather than a negative number).
+
+For this example, when a magic skill is used we will double the damage for a single target magic skill,
+and do normal damage to all monsters for an aoe magic skill.  Also, we should be sure to deduct the mp
+cost of the magic skill.
+
+We can also use the renpy.with_statement(hpunch) statement to give a bit of visual flair while performing
+the damaging attack.
+
+Step 9a: In the battle.rpy file, create a new python function called attack.  It should take two arguments,
+monster and damage. To begin with, we will add the visual element for the attack:
+
+renpy.pause(0.2, hard = True)
+renpy.with_statement(hpunch)
+renpy.pause(0.2)
+
+Step 9b: If the player chooses an attack skill, call the attack function, passing as the arguments
+the selected target (which should be in the target variable at this point) and the player's atk attribute.
+Now if you run the battle sequence, you should see the visual effect of an attack.
+
+Step 9c: In your attack fucntion, deduct either the full damage from the monster hp if the monster hp
+is more than the damage, or set the monster's hp attribute to 0.
+
+Step 9d: In the section of the player_skill section when a magic skill is chosen, damage the target
+for twice the current player's atk attribute for a non-aoe attack, and damage each monster (in the
+monsters list) by the curren tplayer's atk attribute for an aoe magic skill.  In either case, deduct
+the skill's mp cost from the player's mp attribute. Also, you should change the message to show
+that player character used the chosen skill's description on the target's name.
+
+Step 10: End of player turn, including player win check
+
+After an attack, we'll want to check all monsters to see if any are at 0 hp. We should filter for only monsters that are still alive, resulting in the dead monsters from being removed from view.
+Then, if there are no monsters remaining, we should set the inCombat variable to false to trigger the end of combat.
+
+Step 10a. Create a check_hp function in battle.rpy.  It should accept a list of characters (monsters
+or player characters) as a sole argument, and should return the list of characters that still have
+ hp greater than 0.
+
+Step 10b. As the final part of the player_skill label before returning, include a python code block
+that runs the check_hp function on the monsters list.  We should in the process reset monsters to
+that new list.  This will automatically change the display of monsters in the display_monsters screen
+to only include the monsters that are still active.
+
+Step 10c. Make a final check that there is at least one remaining element of monsters. If not,
+change the message to "You win", set inCombat to False, and win to True.  Also, in the part of the
+turn_actions labels where you select the next player with the jump to turn_actions, only do that
+jump if inCombat is still True.
+
+Step 11: Monster turn
+
+Next, after the player turn is over, we should run through all the remaining monsters and have them
+attack a random player. Note that we should make sure that monsters only attack characters with positive hp.
+ We won't remove 0 hp characters (unlike monsters), to allow for future revive mechanics.
+
+Use whatever formula you choose for figuring out damage. Make sure that the damage done does not exceed the
+attacked character's hp, and it is best to reduce the damage done by the character's defense score and whether
+the character chose to be defending.
+
+Given a list, we can use the renpy.random.choice() function to randomly choose an element from there.
+There is a player_dmg screen which we can use to show damage, which requires a monster_damage integer and a
+hit_characters list of player characters that were damaged, and will use a special display for the damage. Add
+the screen for 1 second before removing it and add a renpy.with_statement(hpunch) animation for extra flair.
+
+Step 11a: In battle.rpy, create a monster_turns function which takes two parameters, a list of monsters
+and a list of characters. Set up global variables monster_damage and hit_characters.  Though global
+variables are not usually a good idea, we will need them here to interact with our screens.
+
+Step 11b: Create a loop that goes through each monster in the monsters list.  Create a list of all
+active characters that have an hp attribute greater than 0. If there are none, just return, as there
+is no further need to do damage since all the characters are knocked out. Then, use the
+renpy.random.choice function to get a target:
+
+target = renpy.random.choice(active_characters)
+
+Step 11c: Choose an amount of damage for the monster to do. We suggest that you set it to either
+monster's atk stat minus the target's defense stat, or at minimum 1 if the target's defense is greater
+than or equal to the monster's attack.
+
+Step 11d: If the arget is defending, we suggest reducing the damage by some factor, such as three.
+
+Step 11e: Set monster_damage to either the damage calculated or the target's hp, whichever is lower.
+Then change the target's hp appropriately. Set the hit_characters global variable to a list with one
+element, the target.
+
+Step 11f: Show the results by showing the player_dmg screen:
+renpy.show_screen("player_dmg")
+renpy.with_statement(hpunch)
+renpy.pause(1.0)
+renpy.hide_screen("player_dmg")
+
+Step 11g: In the part of the example_battle label after turn_actions is called, add a python block which
+calls monster_turns with the current monsters and players.
+
+Step 12: Check for Monster win
+
+After the monsters complete their turn, we want to check if any of the player characters are still active
+(> 0 hp). If not, we should set isCombat to False and winning to False, so that we can finish the combat.
+
+After the combat is over, we should use the natural say command to declare whether the player won or
+lost the combat, and we can play sound fanfare to add a sound effect for winning. We should also hide
+all the combat related screens (battle_overlay, battle_message, display_monsters).
+
+Step 12a: In the example_battle label after monster_turns are called, check to see if any players are
+have more than 0 hp.  If not, set inCombat and win to False
+
+Step 12b: Create the end_battle label and hide the overlay screen with dissolve.  If win is True,
+play a celebratory sound:
+
+stop music
+play sound fanfare
+"You win!"
+stop sound
+
+Step 12c: If win is False, use the say command to say "You lost..."
+
+Step 12d: At the very end of the end_battle label, hide both the battle_message and the display_monsters
+screens and call the start_narrative_mode function.
+
+Renpy RPG resouces:
+You should now have an example RPG battle system in Renpy. You can add additional features, such as integrating an inventory system such as in the example provided in the example_bundle.zip. You can also add more features such as more types of skills, and fix issues such as making magic skills not show up if the character has no more mp.
+There are many Ren'py source online, including many Ren'py Youtube videos. Here is a list of resources for further exploration.
+Overworld map :
+https://inkarnate.com/
+
+Sound and music editing: https://www.bandlab.com/products/cake...
+
+game assets:
+https://itch.io
+
+story ideas:
+https://openai.com/blog/chatgpt/
+
+Renpy beginner to advanced
+https://www.youtube.com/playlist?list=PLKdE0Vv4UA5-dqJLpDkPt5CLQzc6hJ-uh
+
+map exploration and movement
+https://www.youtube.com/watch?v=ZYdBq4veSEs
+Playlist
+https://www.youtube.com/playlist?list=PLJgbnTkC4bkCj2_8ZUg1o4CafLcRH0rAX
+
+basic rpg framework
+https://github.com/VimislikArt/rpg_fight/blob/main/rpg_fight.rpy
+
+Existing battle engine system:
+https://github.com/Habitacle/battle-engine
