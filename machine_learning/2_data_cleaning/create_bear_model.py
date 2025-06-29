@@ -18,6 +18,19 @@ if __name__ == '__main__':
     import matplotlib.pyplot as plt
 
     from fastai.vision.augment import *
+    import urllib.request
+
+    def get_images(keywords, max_results=10):
+        duck_duck_go_search = DDGS(proxy="tb", timeout=5)
+        search_urls = duck_duck_go_search.images(keywords, max_results=max_results)
+        return [url['image'] for url in search_urls]
+
+    def download_image(url, file):
+        try:
+            urllib.request.urlretrieve(url, file)
+        except Exception as err:
+            print(err)
+            print(f"Could not load {url}, skipping")
 
     custom_aug_transforms = [RandomResizedCrop(128, min_scale=0.35), Flip(), Brightness(), Contrast(),
                              Rotate(max_deg=10.0)]

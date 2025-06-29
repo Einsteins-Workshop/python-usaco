@@ -34,6 +34,7 @@ if __name__ == '__main__':
     learn.fine_tune(3)
 
     # Test your model on the test file.
+    test_file = Path('test.jpg')
     is_bird, _, probability = learn.predict(test_file)
     print(f"This is a: {is_bird}.")
     print(f"Probability it's a bird: {probability[0]:.4f}")
