@@ -41,7 +41,7 @@ if __name__ == '__main__':
     #urls = ddgs.images(keywords="robin photos", max_results=1)
     test_file = Path('test.jpg')
     #print(urls)
-    urls = get_images("robin photos", max_results=1)
+    urls = get_images("tesla photos", max_results=1)
     if not test_file.exists():
         download_image(urls[0], test_file)
 
@@ -53,8 +53,8 @@ if __name__ == '__main__':
 
 
     # Create the training data set, which will consist of up to 200 images resulting from searches on forest and birds
-    image_categories = ['forest', 'bird']
-    path = Path('bird_or_not')
+    image_categories = ['runways', 'car']
+    path = Path('car_or_not')
 
     if not path.exists():
         path.mkdir(exist_ok=True) # Create the overall bird_or_not directory
