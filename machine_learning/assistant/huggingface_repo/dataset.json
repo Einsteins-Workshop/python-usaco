@@ -1,0 +1,52 @@
+{
+  "database" : [{
+    "user_number": 1,
+    "name" : "Conor",
+    "Type_of_sport" : "Physical",
+    "Country" : "USA",
+    "Age" : "17",
+    "Income" : "1m",
+    "Skill Set": "A bit fast, not strong"
+
+
+
+
+  },
+    {
+      "user_number": 2,
+    "name" : "Aras",
+    "Type_of_sport" : "Physical and Mental",
+    "Country" : "Turkey",
+    "Age" : "19",
+    "Income" : "500k",
+      "Skill Set" : "Strong, balanced, resilient, but not fast"
+    },
+    {
+      "user_number": 3,
+    "name" : "Elias",
+    "Type_of_sport" : "Physical",
+    "Country" : "Belgium",
+    "Age" : "18",
+    "Income" : "3 million",
+      "Skill Set" : "Fast, not strong, but coordinated"
+    },
+    {"user_number": 4,
+    "name" : "Raphael",
+    "Type_of_sport" : "Mental",
+    "Country" : "Spain",
+    "Age" : "21",
+    "Income" : "4.6 million",
+    "Skill Set" : "Not Strong nor Fast, but fast reaction time and high intelligence"},
+    {"user_number": 5,
+    "name" : "Luke",
+    "Type_of_sport" : "Physical",
+    "Country" : "Morocco",
+    "Age" : "20",
+    "Income" : "700k",
+      "Skill Set" : "Strong,fast, and agile"
+
+
+    }
+  ]
+}
+
